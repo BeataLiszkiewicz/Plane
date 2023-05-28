@@ -1,0 +1,114 @@
+.calendar {
+    display: grid;
+    min-width: 375px;
+    overflow: hidden;
+    position: relative;
+    left: 0;
+
+    @media (orientation:landscape){
+      max-width: 80vmin;
+    }
+  
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      min-height: 3rem;
+       .direction{
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+       }
+  
+      button{
+          height: 70%;
+          min-height: 14px;
+          border-radius: 2%;
+      }
+      .clicked {
+        transform: scale(0.98);
+        background: #2f43bb;
+        border: 1px 1px outset #e6eaed;
+        color: white;
+      }
+      .clear {
+        transform: scale(1);
+        box-shadow: none;
+        color: black;
+        background-color: #00adfb;
+        border: 1px groove #e6eaed;
+      }
+    }
+  
+    .calendarByDays {
+      grid-row: 2;
+      display: grid;
+      grid-template-rows: 10% 10% 80%;
+  
+      .monthHead {
+        display: grid;
+        grid-template-columns: 10% 10% 30% 10% 40%;
+        background-color: #2f43bb;
+        color: white;
+        height: 2.5rem;
+  
+        button {
+          all: unset;
+        }
+        .valid {
+          color: white;
+        }
+  
+        .disabled {
+          color: #2f43bb;
+        }
+  
+        .month{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .year{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      .weekDays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+  
+        div {
+          border: 1px solid #b5cae1;
+          background-color: #00adfb;
+        }
+      }
+  
+      .days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        row-gap: 0.5rem;
+        :hover{
+          cursor:pointer
+        }
+  
+        :nth-child(7n) {
+          background-color: #e6eaed;
+        }
+  
+        div {
+          aspect-ratio: 1;
+          min-height: 14px;
+          border: 1px solid #00adfb;
+          font-size: 15px;
+          text-align: center;
+
+          span{
+            font-size: 12px;
+            color: gray;
+          }
+        }
+      }
+    }
+  }
+  

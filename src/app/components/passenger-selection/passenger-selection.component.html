@@ -1,0 +1,94 @@
+<div class="main">
+  <div class="form">
+    <form>
+      <div class="adult">
+        <div class="label">
+          <label for="adult" title="Over 16 years old">Adults:</label>
+          <p>Over 16 years old</p>
+        </div>
+        <div class="choice">
+          <button (click)="changeAdult(-1)" [disabled]="adults < 1">-</button>
+          <input
+            #adult
+            (value)="([adults])"
+            [ngModel]="adults"
+            [ngModelOptions]="{ standalone: true }"
+            [disabled]="adults + child > 8"
+          />
+          <button (click)="changeAdult(1)" [disabled]="adults + child > 8">
+            +
+          </button>
+        </div>
+      </div>
+      <div class="children">
+        <div class="label">
+          <label for="children" title="From 2 to 16 years old">Children:</label>
+          <p>From 2 to 15 years old</p>
+        </div>
+        <div class="choice">
+          <button (click)="changeChildren(-1)" [disabled]="child < 1">-</button>
+          <input
+            #children
+            [disabled]="adults === 0"
+            [ngModel]="child"
+            [ngModelOptions]="{ standalone: true }"
+            [disabled]="adults + child > 8 || adults === 0"
+          />
+          <button
+            (click)="changeChildren(1)"
+            [disabled]="adults + child > 8 || adults === 0"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div class="infant">
+        <div class="label">
+          <label
+            for="infant"
+            title="Under 2 years old flying at caregiver's laps"
+            >Infants:</label
+          >
+          <p>Under 2 years old flying at caregiver's laps</p>
+        </div>
+        <div class="choice">
+          <button (click)="changeInfant(-1)" [disabled]="infants < 1">-</button>
+          <input
+            #infant
+            [disabled]="adults === 0"
+            [ngModel]="infants"
+            [ngModelOptions]="{ standalone: true }"
+            [disabled]="infants === adults + child || adults === 0"
+          />
+          <button
+            (click)="changeInfant(1)"
+            [disabled]="infants === adults + child"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="adults === 0"
+        (click)="close()"
+        class="submit"
+      >
+        Apply
+      </button>
+    </form>
+  </div>
+
+  <p class="warning" *ngIf="adults === 0">
+    Passengers under 16 can not fly without adult companion
+  </p>
+  <p class="warning" *ngIf="adults + child > 8">
+    To buy more than 9 seat tickets, please contact our hotline to check current
+    discounts and conditions.
+  </p>
+  <p class="warning" *ngIf="adults + child === infants && adults + child < 9">
+    All infants needs to fly with someone older. If you want to buy separate
+    seat for infant, please add another child passenger and inform our crew at
+    the gate.
+  </p>
+</div>

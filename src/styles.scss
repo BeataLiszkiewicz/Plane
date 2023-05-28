@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html{
+    box-sizing: border-box;
+    max-width: 95vw;
+    max-height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0;
+
+    @media (orientation:landscape){
+        max-width: 95vmax;
+        max-height: 95vmin;
+    }
+
+    body{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.color{
+    color:#05080f, #455060, #b5cae1, #e6eaed and #c86208, #00adfb, #2f43bb, #3f3ced 
+}

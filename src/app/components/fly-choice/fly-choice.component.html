@@ -1,0 +1,58 @@
+<div class="container">
+  <form #flyForm="ngForm" (ngSubmit)="buy(flyForm, $event)">
+    <div class="departure">
+      <label for="departure">Departure airport</label>
+      <select
+        name="departure"
+        #departure
+        (click)="arrivalAirportsOpen(departure.value)"
+        [disabled]="disable === true"
+        required
+      >
+        <option style="display: none"></option>
+        <option *ngFor="let fly of availableDepartures" [value]="fly">
+          {{ fly }}
+        </option>
+      </select>
+    </div>
+    <div class="arrival">
+      <label for="arrival">Arrival airport</label>
+      <select
+        name="arrival"
+        #arrival
+        required
+        (click)="departureAirports(arrival.value)"
+        [disabled]="disable === true"
+      >
+        <option style="display: none"></option>
+        <option *ngFor="let fly of availableArrivals" [value]="fly">
+          {{ fly }}
+        </option>
+      </select>
+    </div>
+    <div class="calendar">
+      <ng-container *ngIf="departure.value !== '' && arrival.value !== ''">
+        <label for="departureDay">Departure day:</label>
+        <input
+        required
+          type="date"
+          (click)="openCalendar()"
+          [ngModel]="fromCalendar.departureDate | date : 'yyyy-MM-dd'"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </ng-container>
+    </div>
+    <div class="passengers">
+      <ng-container *ngIf="departure.value !== '' && arrival.value !== ''">
+        <label for="passenger">Number of passengers:</label>
+        <input
+        required
+          (click)="openPassengerChoice()"
+          [ngModel]="passengersNumber"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </ng-container>
+    </div>
+    <button type="submit" class="submit" *ngIf="departure.value !== '' && arrival.value !== ''&& fromCalendar.departureDate!==undefined&&passengersNumber>0">BUY</button>
+  </form>
+</div>

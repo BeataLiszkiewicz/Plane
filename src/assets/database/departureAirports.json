@@ -1,0 +1,14 @@
+[
+    {
+      "departureAirport": "Warszawa-Radom",
+      "arrivalAirports": ["Paryż", "Preveza", "Rzym", "Tirana", "Warna"]
+    },
+    {
+      "departureAirport": "Zielona Góra",
+      "arrivalAirports": ["Antalya", "Warszawa-Chopina", "Gdańsk"]
+    },
+    {
+      "departureAirport": "Lublin",
+      "arrivalAirports": ["Dublin", "Warszawa-Chopina", "Gdańsk", "Londyn"]
+    }
+  ]
