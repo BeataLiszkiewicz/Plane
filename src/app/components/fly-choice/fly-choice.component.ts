@@ -14,6 +14,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DepartureCalendarComponent } from '../departure-calendar/departure-calendar.component';
 import { DataFromCalendarService } from 'src/app/services/data-from-calendar.service';
 import { PassengerSelectionComponent } from '../passenger-selection/passenger-selection.component';
+import { WeatherApiService } from 'src/app/services/weather-api.service';
+import coordinates from './../../../assets/database/cityCoordinates.json';
 
 @Component({
   selector: 'app-fly-choice',
@@ -26,15 +28,16 @@ export class FlyChoiceComponent {
   arrival: string = '';
   availableArrivals: Array<string> = [];
   availableDepartures: Array<string> = [];
+  city: any;
+  dailyWeatherForecast: any = [];
   departure: string = '';
-  disable=false;
-  fromCalendar:any;
+  disable = false;
+  fromCalendar: any;
   oneAirport: any;
-  passengersSelection:any;
-  passengersNumber:number=0;
+  passengersSelection: any;
+  passengersNumber: number = 0;
   someAirports: Array<string> = [];
-  
-  
+  weatherForecast: any;
 
   constructor(
     private readonly form: FormBuilder,
@@ -42,8 +45,9 @@ export class FlyChoiceComponent {
     private flyChoiceService: FlyChoiceDataService,
     private barOnServise: BarOnService,
     private dialogRef: MatDialog,
-    private dataService:DataFromCalendarService,
-    private passengersInfo:MatDialogRef<PassengerSelectionComponent>
+    private dataService: DataFromCalendarService,
+    private passengersInfo: MatDialogRef<PassengerSelectionComponent>,
+    private weatherService: WeatherApiService
   ) {}
 
   ngOnInit() {
@@ -69,10 +73,9 @@ export class FlyChoiceComponent {
     this.dataService.getData().subscribe({
       next: (el: any) => {
         this.fromCalendar = el;
-        if (el!==''){
-          this.disable=true;
+        if (el !== '') {
+          this.disable = true;
         }
-        
       },
       error: (err: any) => console.log(err),
     });
@@ -83,7 +86,8 @@ export class FlyChoiceComponent {
   }
 
   arrivalAirportsOpen(param: string) {
-    if (param !== '') {
+    if (param !== ''&&this.departure!==param) {
+      this.dailyWeatherForecast=[];
       this.oneAirport = this.allAirports.find(
         (el: any) => el.departureAirport === param
       );
@@ -91,10 +95,38 @@ export class FlyChoiceComponent {
 
       this.departure = param;
       this.flyChoiceService.setDeparture(this.departure);
+
+      // get coordinates of departure airport
+      this.city = coordinates.filter((item) => item.airport === this.departure);
+      this.weatherService.weather(this.city).subscribe({
+        next: (data: any) => {
+          this.dailyWeatherForecast.push({
+            day: new Date(data.list[0].dt_txt).getDate(),
+                date: new Date(data.list[0].dt_txt),
+                temp:Math.round(data.list[0].main.feels_like),
+                weather:data.list[0].weather[0].main
+          });
+          for (let i = 1; i < data.list.length; i++) {
+            if (
+              new Date(data.list[i].dt_txt).getDate() !==
+              this.dailyWeatherForecast[this.dailyWeatherForecast.length-1].day
+            ) {
+              this.dailyWeatherForecast.push({
+                day: new Date(data.list[i].dt_txt).getDate(),
+                date: new Date(data.list[i].dt_txt),
+                temp:Math.round(data.list[i].main.feels_like),
+                weather:data.list[i].weather[0].main
+              });
+            }
+          }
+        },
+        error: (err: any) => console.error(err),
+      });
     }
   }
 
   departureAirports(param: string) {
+    console.log(this.dailyWeatherForecast);
     if (param !== '') {
       if (this.departure !== '') {
         this.availableDepartures = [this.departure];
@@ -117,48 +149,40 @@ export class FlyChoiceComponent {
   }
 
   openCalendar() {
-    
-      this.dialogRef.open(DepartureCalendarComponent, {
-        disableClose: false,
-        hasBackdrop: true,
-        backdropClass: '',
-        minWidth: '375px',
-        height: '',
-        position: {
-            top: '',
-            bottom: '',
-            left: '',
-            right: ''
-        },
+    this.dialogRef.open(DepartureCalendarComponent, {
+      disableClose: false,
+      hasBackdrop: true,
+      backdropClass: '',
+      minWidth: '375px',
+      height: '',
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+      },
+    });
+  }
 
-      });
-    }
+  openPassengerChoice() {
+    const passengersInfo = this.dialogRef.open(PassengerSelectionComponent, {
+      disableClose: false,
+      hasBackdrop: true,
+      backdropClass: '',
+      minWidth: '80%',
+      height: '',
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+      },
+    });
 
-    openPassengerChoice(){
-     const passengersInfo = this.dialogRef.open(PassengerSelectionComponent, {
-        disableClose: false,
-        hasBackdrop: true,
-        backdropClass: '',
-        minWidth: '80%',
-        height: '',
-        position: {
-            top: '',
-            bottom: '',
-            left: '',
-            right: ''
-        },
+    passengersInfo.afterClosed().subscribe((result) => {
+      this.passengersNumber = result.adults + result.children + result.infants;
+    });
+  }
 
-      });
-
-      passengersInfo.afterClosed().subscribe(result=>{
-        this.passengersNumber=result.adults+result.children+result.infants
-      })
-
-
-    }
-
-    buy(form:NgForm, submit:any){
-      
-    }
-
+  buy(form: NgForm, submit: any) {}
 }

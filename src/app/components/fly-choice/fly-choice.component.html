@@ -1,3 +1,19 @@
+<div class="weather" *ngIf="departure.value !== ''">
+  {{ departure.value }} weather forecast
+  <div class="weatherForecast">
+    <ng-container *ngFor="let day of dailyWeatherForecast">
+      <div class="weatherDay">
+        <p class="date">{{day.date|date:'dd.MM'}}</p>
+        <img
+          src="{{ 'assets/pictures/' + day.weather + '.png' }}"
+          alt="{{ day.weather }}"
+        />
+        <p class="temperature">{{ day.temp }}<span>&#8451;</span></p>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
 <div class="container">
   <form #flyForm="ngForm" (ngSubmit)="buy(flyForm, $event)">
     <div class="departure">
@@ -34,7 +50,7 @@
       <ng-container *ngIf="departure.value !== '' && arrival.value !== ''">
         <label for="departureDay">Departure day:</label>
         <input
-        required
+          required
           type="date"
           (click)="openCalendar()"
           [ngModel]="fromCalendar.departureDate | date : 'yyyy-MM-dd'"
@@ -46,13 +62,24 @@
       <ng-container *ngIf="departure.value !== '' && arrival.value !== ''">
         <label for="passenger">Number of passengers:</label>
         <input
-        required
+          required
           (click)="openPassengerChoice()"
           [ngModel]="passengersNumber"
           [ngModelOptions]="{ standalone: true }"
         />
       </ng-container>
     </div>
-    <button type="submit" class="submit" *ngIf="departure.value !== '' && arrival.value !== ''&& fromCalendar.departureDate!==undefined&&passengersNumber>0">BUY</button>
+    <button
+      type="submit"
+      class="submit"
+      *ngIf="
+        departure.value !== '' &&
+        arrival.value !== '' &&
+        fromCalendar.departureDate !== undefined &&
+        passengersNumber > 0
+      "
+    >
+      BUY
+    </button>
   </form>
 </div>
