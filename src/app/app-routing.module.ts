@@ -4,12 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { FirstPageComponent } from './components/first-page/first-page.component';
 import { FlyChoiceComponent } from './components/fly-choice/fly-choice.component';
 import { DepartureCalendarComponent } from './components/departure-calendar/departure-calendar.component';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { SummaryComponent } from './components/summary/summary.component';
 
 const routes:Routes=[
   {path:'', redirectTo:'firstPage', pathMatch:'full'},
   {path:'firstPage', component:FirstPageComponent},
   {path:'flyChoice', component:FlyChoiceComponent},
-  {path:'calendar',component:DepartureCalendarComponent}
+  {path:'calendar',component:DepartureCalendarComponent},
+  {path:'login', component:LogInComponent},
+  {path:'summary', component:SummaryComponent}
 ]
 
 @NgModule({

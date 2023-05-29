@@ -15,12 +15,13 @@
 </div>
 
 <div class="container">
-  <form #flyForm="ngForm" (ngSubmit)="buy(flyForm, $event)">
+  <form #flyForm="ngForm" >
     <div class="departure">
       <label for="departure">Departure airport</label>
       <select
         name="departure"
-        #departure
+        ngModel
+        #departure="ngModel"
         (click)="arrivalAirportsOpen(departure.value)"
         [disabled]="disable === true"
         required
@@ -35,7 +36,8 @@
       <label for="arrival">Arrival airport</label>
       <select
         name="arrival"
-        #arrival
+        ngModel
+        #arrival="ngModel"
         required
         (click)="departureAirports(arrival.value)"
         [disabled]="disable === true"
@@ -78,6 +80,7 @@
         fromCalendar.departureDate !== undefined &&
         passengersNumber > 0
       "
+      (click)="buy()"
     >
       BUY
     </button>

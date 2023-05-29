@@ -18,7 +18,6 @@ export class PassengerSelectionComponent {
   passengers: number = 0;
 
   constructor(
-    private flyChoiceServie: FlyChoiceDataService,
     public dialogRef: MatDialogRef<PassengerSelectionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}

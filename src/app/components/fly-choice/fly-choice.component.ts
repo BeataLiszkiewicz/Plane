@@ -16,6 +16,7 @@ import { DataFromCalendarService } from 'src/app/services/data-from-calendar.ser
 import { PassengerSelectionComponent } from '../passenger-selection/passenger-selection.component';
 import { WeatherApiService } from 'src/app/services/weather-api.service';
 import coordinates from './../../../assets/database/cityCoordinates.json';
+import { LogInComponent } from '../log-in/log-in.component';
 
 @Component({
   selector: 'app-fly-choice',
@@ -23,16 +24,19 @@ import coordinates from './../../../assets/database/cityCoordinates.json';
   styleUrls: ['./fly-choice.component.scss'],
 })
 export class FlyChoiceComponent {
+  adults:number=0;
   allAirports: any;
   allDepartureAirports: number = 0;
   arrival: string = '';
   availableArrivals: Array<string> = [];
   availableDepartures: Array<string> = [];
+  children:number=0;
   city: any;
   dailyWeatherForecast: any = [];
   departure: string = '';
   disable = false;
   fromCalendar: any;
+  infants:number=0;
   oneAirport: any;
   passengersSelection: any;
   passengersNumber: number = 0;
@@ -184,5 +188,18 @@ export class FlyChoiceComponent {
     });
   }
 
-  buy(form: NgForm, submit: any) {}
+  buy() {
+    const logIn = this.dialogRef.open(LogInComponent, {
+      disableClose: true,
+      hasBackdrop: true,
+      backdropClass: '',
+      minWidth: '80%',
+      height: '',
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+      },
+  })};
 }

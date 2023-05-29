@@ -150,14 +150,10 @@ export class DepartureCalendarComponent {
           this.calendar[this.calendarMonth].month-1,
           param[0]
         ),
-        // price: this.calendar[this.calendarMonth].days[param[0]][1],
-        // currency: this.currencyRate[1],
+        price: this.calendar[this.calendarMonth].days[param[0]][1],
+        currency: this.currencyRate[1]
         
       });
-      console.log( 'for service:', new Date(
-        this.calendar[this.calendarMonth].year,
-        this.calendar[this.calendarMonth].month-1,
-        param[0]), 'real year:',this.calendar[this.calendarMonth].year, 'real month:',  this.calendar[this.calendarMonth].month, 'real date:', param[0]);
       sessionStorage.setItem('currency', this.currencyRate[1]);
     }
     this.dialogRef.closeAll();

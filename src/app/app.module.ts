@@ -13,7 +13,9 @@ import { DepartureCalendarComponent } from './components/departure-calendar/depa
 import { CalendarCurrencyPipe } from './pipes/calendar-currency.pipe';
 import { MonthNamePipe } from './pipes/month-name.pipe';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
-import { PassengerSelectionComponent } from './components/passenger-selection/passenger-selection.component'
+import { PassengerSelectionComponent } from './components/passenger-selection/passenger-selection.component';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { SummaryComponent } from './components/summary/summary.component'
 
 
 
@@ -26,7 +28,9 @@ import { PassengerSelectionComponent } from './components/passenger-selection/pa
     DepartureCalendarComponent,
     CalendarCurrencyPipe,
     MonthNamePipe,
-    PassengerSelectionComponent
+    PassengerSelectionComponent,
+    LogInComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, ReactiveFormsModule, HttpClientModule, FormsModule, AppRoutingModule, MatDialogModule

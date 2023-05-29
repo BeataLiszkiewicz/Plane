@@ -8,7 +8,6 @@ export class FlyChoiceDataService {
   arrival=new BehaviorSubject<string>("");
   departure=new BehaviorSubject<string>("");
 
-
   constructor() { }
   setArrival(el:string){
     this.arrival.next(el)
@@ -25,6 +24,5 @@ export class FlyChoiceDataService {
   getDeparture(){
     return this.departure.asObservable()
   }
-
   
 }
