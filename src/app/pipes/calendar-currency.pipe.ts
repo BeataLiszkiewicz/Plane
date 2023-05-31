@@ -10,7 +10,7 @@ export class CalendarCurrencyPipe implements PipeTransform {
       if (exchangeRate===1){
         return `${value}`
       }else{
-        return `${Math.floor(value/exchangeRate)}`
+        return `${Math.round(value/exchangeRate)}`
       }
     }
   }

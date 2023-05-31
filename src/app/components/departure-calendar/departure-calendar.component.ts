@@ -17,7 +17,9 @@ export class DepartureCalendarComponent {
   currentMonth: number = new Date().getMonth() + 1;
   currentYear: number = new Date().getFullYear();
   emptyDays: number = 0;
+  finalPrice:any;
   lastDay: any;
+  price:any;
   storedCurrency: string | null = sessionStorage.getItem('currency');
   today: number = new Date().getDate();
   week: any = ['Mon.', 'Tues.', 'Wed.', 'Thurs.', 'Fri.', 'Sat.', 'Sun.'];
@@ -144,18 +146,22 @@ export class DepartureCalendarComponent {
     if (param[1] === '') {
       alert('Sorry, chosen date falls in the past.');
     } else {
+      this.finalPrice=this.calendar[this.calendarMonth].days.filter((el:any)=>el[0]===param[0]);
       this.dataServise.setData({
         departureDate: new Date(
           this.calendar[this.calendarMonth].year,
           this.calendar[this.calendarMonth].month-1,
           param[0]
         ),
-        price: this.calendar[this.calendarMonth].days[param[0]][1],
+        price: Math.round(this.finalPrice[0][1]/this.currencyRate[0]),
         currency: this.currencyRate[1]
         
       });
+      
       sessionStorage.setItem('currency', this.currencyRate[1]);
+      
     }
     this.dialogRef.closeAll();
+    
   }
 }

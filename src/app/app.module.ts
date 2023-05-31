@@ -12,12 +12,11 @@ import { FlyChoiceComponent } from './components/fly-choice/fly-choice.component
 import { DepartureCalendarComponent } from './components/departure-calendar/departure-calendar.component';
 import { CalendarCurrencyPipe } from './pipes/calendar-currency.pipe';
 import { MonthNamePipe } from './pipes/month-name.pipe';
-import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { PassengerSelectionComponent } from './components/passenger-selection/passenger-selection.component';
 import { LogInComponent } from './components/log-in/log-in.component';
-import { SummaryComponent } from './components/summary/summary.component'
-
-
+import { SummaryComponent } from './components/summary/summary.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -30,16 +29,25 @@ import { SummaryComponent } from './components/summary/summary.component'
     MonthNamePipe,
     PassengerSelectionComponent,
     LogInComponent,
-    SummaryComponent
+    SummaryComponent,
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, ReactiveFormsModule, HttpClientModule, FormsModule, AppRoutingModule, MatDialogModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule,
+    MatDialogModule,
+    MatButtonToggleModule,
   ],
-  providers: [BarOnService, {
-    provide: MatDialogRef,
-    useValue: {}
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    BarOnService,
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}

@@ -50,7 +50,6 @@ export class FlyChoiceComponent {
     private barOnServise: BarOnService,
     private dialogRef: MatDialog,
     private dataService: DataFromCalendarService,
-    private passengersInfo: MatDialogRef<PassengerSelectionComponent>,
     private weatherService: WeatherApiService
   ) {}
 
@@ -185,7 +184,10 @@ export class FlyChoiceComponent {
 
     passengersInfo.afterClosed().subscribe((result) => {
       this.passengersNumber = result.adults + result.children + result.infants;
+      this.flyChoiceService.setPassengers({'adults':result.adults, 'children':result.children, 'infants':result.infants})
     });
+    
+    
   }
 
   buy() {

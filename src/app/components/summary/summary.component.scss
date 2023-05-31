@@ -1,40 +1,59 @@
-.flyDetails{
+.container {
+width: 100%;
+  position: absolute;
+  top: 5rem;
+  display: flex;
+  flex-direction: column;
+  .flyDetails {
     display: flex;
-}
-.personalDetails{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: repeat(4,1fr);
-}
-.seatChoice{
-    height: 10rem;
-    clip-path: polygon(
-          40% 70%,
-          38% 56%,
-          
-          
-          40% 30%,
-          40% 23%,
-          40% 14%,
-          42% 8%,
-          46% 4%,
-          50% 0%,
-          54% 3%,
-          58% 8%,
-          60% 14%,
-          60% 23%,
-          60% 30%,
-          
-          
-          
-          60% 70%,
-          57% 86%,
-          70% 96%,
-          53% 93%,
-          50% 100%,
-          48% 93%,
-          30% 96%,
-          43% 85%
-        );
-        background-color: black;
+    position: relative;
+    top: 0;
+  }
+  .tickets {
+    overflow: scroll;
+    scrollbar-color: #2f43bb #b5cae1;
+    scrollbar-width: thin;
+    max-height: 50rem;
+    .passenger {
+      box-shadow: 1px 1px 3px #00adfb;
+      .personalDetails {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+      }
+    }
+  }
+  .plane {
+    width: 100%;
+    background-color: black;
+    border-radius: 50% 50% 0 0;
+    .seats {
+       height: 80%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border: none;
+
+      button {
+        background-color: orange;
+        text-align: left;
+       border:1px solid white;
+      }
+
+      button[name="checked"]{
+        background-color: red;
+       }
+      .columnA {
+        grid-column: 1;
+      }
+      .columnB {
+        grid-column: 2;
+      }
+      .columnC {
+        grid-column: 4;
+      }
+      .columnD {
+        grid-column: 5;
+      }
+    }
+  }
 }

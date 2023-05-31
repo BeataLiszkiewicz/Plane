@@ -1,27 +1,49 @@
 <div class="container">
   <div class="flyDetails">
-    <p class="fromTo">From to</p>
-    <p class="departureDate">Departure date</p>
-    <p class="total">Total cost:</p>
+    <p class="fromTo">{{ summary.departure }} to {{ summary.arrival }}</p>
+    <p class="departureDate">{{ summary.departDate | date : "dd.MM.yyyy" }}</p>
+    <p class="total">Total cost:{{ totalCost }} {{ summary.currency }}</p>
   </div>
-  <div class="passenger">
-    <div class="ticketGroup">ticketGroup</div>
-    <div class="personalDetails">
-      <label for="name">Name:</label>
-      <input type="text" name="name" />
-      <label for="surname">Surname:</label>
-      <input type="text" name="surname" />
-      <label for="seat">Seat:</label>
-      <input type="text" name="seat" />
-      <label for="luggage"></label>
-      <select name="luggage" id="luggage">
-        <option value="standard">Carry-on baggage only</option>
-        <option value="extra">Checked baggage</option>
-      </select>
-      <p class="price">Total price:</p>
+  <div class="tickets" #tickets>
+    <div
+      class="passenger"
+      *ngFor="let person of summary.passenger; let i = index"
+    >
+      <p>Id: {{ i + 1 }}</p>
+      <div class="ticketGroup">Ticket class: {{ person.status }}</div>
+      <div class="personalDetails">
+        <label for="name">Name:</label>
+        <input type="text" name="name" />
+        <label for="surname">Surname:</label>
+        <input type="text" name="surname" />
+        <ng-container *ngIf="person.status!=='Infant'">
+        <label for="seat" >Seat:</label>
+        <input type="text" name="seat" id="{{i}}" (click)="seat(i)" value="{{person.seat}}" (focus)="openPlane()"/>
+        </ng-container>
+        <label for="luggage"></label>
+        <select name="luggage" id="luggage">
+          <option value="standard">Carry-on baggage only</option>
+          <option value="extra">
+            Checked baggage +{{ extraLuggage }}{{ summary.currency }}
+          </option>
+        </select>
+        <p class="price">{{ person.cost }} {{ summary.currency }}</p>
+      </div>
     </div>
   </div>
-  <div class="plane">
-    <div class="seatChoice">1</div>
+  <div class="plane" #plane [hidden]="!waiting">
+    
+      <div class="seats">
+        <ng-container *ngFor="let _ of [].constructor(20); let i = index">
+           
+        <button class="columnA button" (click)="unsubscribe()" value="{{i+1}}A" name="clear">{{ i+1 }}A</button>
+          <button class="columnB button" (click)="unsubscribe()" value="{{i+1}}B" name="clear">{{i+1}}B</button>
+          <button class="columnC button" (click)="unsubscribe()" value="{{i+1}}C" name="clear">{{i+1}}C</button>
+          <button class="columnD button" (click)="unsubscribe()" value="{{i+1}}D" name="clear">{{i+1}}D</button>
+           
+          
+        </ng-container>
+      </div>
+    
   </div>
 </div>
