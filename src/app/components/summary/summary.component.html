@@ -9,7 +9,6 @@
       class="passenger"
       *ngFor="let person of summary.passenger; let i = index"
     >
-      <p>Id: {{ i + 1 }}</p>
       <div class="ticketGroup">Ticket class: {{ person.status }}</div>
       <div class="personalDetails">
         <label for="name">Name:</label>
@@ -21,13 +20,14 @@
         <input type="text" name="seat" id="{{i}}" (click)="seat(i)" value="{{person.seat}}" (focus)="openPlane()"/>
         </ng-container>
         <label for="luggage"></label>
-        <select name="luggage" id="luggage">
+        <select name="luggage" #luggage (change)="changeLuggage([luggage.value, i])">
           <option value="standard">Carry-on baggage only</option>
           <option value="extra">
-            Checked baggage +{{ extraLuggage }}{{ summary.currency }}
+            Checked baggage +{{extraLuggage }} {{ summary.currency }}
           </option>
+          <option value="extra+">Checked baggage plus small bag +{{extraPlusLuggage}} {{ summary.currency }}</option>
         </select>
-        <p class="price">{{ person.cost }} {{ summary.currency }}</p>
+        <p class="price">{{ person.cost*1 + person.luggage*1 }} {{ summary.currency }}</p>
       </div>
     </div>
   </div>

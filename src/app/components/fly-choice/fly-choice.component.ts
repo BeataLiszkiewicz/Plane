@@ -17,6 +17,7 @@ import { PassengerSelectionComponent } from '../passenger-selection/passenger-se
 import { WeatherApiService } from 'src/app/services/weather-api.service';
 import coordinates from './../../../assets/database/cityCoordinates.json';
 import { LogInComponent } from '../log-in/log-in.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-fly-choice',
@@ -24,24 +25,30 @@ import { LogInComponent } from '../log-in/log-in.component';
   styleUrls: ['./fly-choice.component.scss'],
 })
 export class FlyChoiceComponent {
-  adults:number=0;
+  adults: number = 0;
   allAirports: any;
   allDepartureAirports: number = 0;
   arrival: string = '';
   availableArrivals: Array<string> = [];
   availableDepartures: Array<string> = [];
-  children:number=0;
+  children: number = 0;
   city: any;
+  cityArrival: any;
   dailyWeatherForecast: any = [];
+  dailyWeatherForecastArrival: any = [];
   departure: string = '';
   disable = false;
   fromCalendar: any;
-  infants:number=0;
+  infants: number = 0;
   oneAirport: any;
   passengersSelection: any;
   passengersNumber: number = 0;
   someAirports: Array<string> = [];
+  weatherArrivalSubscription: Subscription | undefined;
   weatherForecast: any;
+  weatherForecastArrival: any;
+  weatherPlace: string = '';
+  weatherSubscription: Subscription | undefined;
 
   constructor(
     private readonly form: FormBuilder,
@@ -52,6 +59,8 @@ export class FlyChoiceComponent {
     private dataService: DataFromCalendarService,
     private weatherService: WeatherApiService
   ) {}
+
+  
 
   ngOnInit() {
     this.barOnServise.setData('showLogin');
@@ -89,8 +98,8 @@ export class FlyChoiceComponent {
   }
 
   arrivalAirportsOpen(param: string) {
-    if (param !== ''&&this.departure!==param) {
-      this.dailyWeatherForecast=[];
+    if (param !== '' && this.departure !== param) {
+      this.dailyWeatherForecast = [];
       this.oneAirport = this.allAirports.find(
         (el: any) => el.departureAirport === param
       );
@@ -105,23 +114,25 @@ export class FlyChoiceComponent {
         next: (data: any) => {
           this.dailyWeatherForecast.push({
             day: new Date(data.list[0].dt_txt).getDate(),
-                date: new Date(data.list[0].dt_txt),
-                temp:Math.round(data.list[0].main.feels_like),
-                weather:data.list[0].weather[0].main
+            date: new Date(data.list[0].dt_txt),
+            temp: Math.round(data.list[0].main.feels_like),
+            weather: data.list[0].weather[0].main,
           });
           for (let i = 1; i < data.list.length; i++) {
             if (
               new Date(data.list[i].dt_txt).getDate() !==
-              this.dailyWeatherForecast[this.dailyWeatherForecast.length-1].day
+              this.dailyWeatherForecast[this.dailyWeatherForecast.length - 1]
+                .day
             ) {
               this.dailyWeatherForecast.push({
                 day: new Date(data.list[i].dt_txt).getDate(),
                 date: new Date(data.list[i].dt_txt),
-                temp:Math.round(data.list[i].main.feels_like),
-                weather:data.list[i].weather[0].main
+                temp: Math.round(data.list[i].main.feels_like),
+                weather: data.list[i].weather[0].main,
               });
             }
           }
+          console.log(this.dailyWeatherForecast);
         },
         error: (err: any) => console.error(err),
       });
@@ -129,7 +140,7 @@ export class FlyChoiceComponent {
   }
 
   departureAirports(param: string) {
-    console.log(this.dailyWeatherForecast);
+    this.dailyWeatherForecastArrival = [];
     if (param !== '') {
       if (this.departure !== '') {
         this.availableDepartures = [this.departure];
@@ -148,6 +159,38 @@ export class FlyChoiceComponent {
       }
       this.arrival = param;
       this.flyChoiceService.setArrival(this.arrival);
+
+      this.cityArrival = coordinates.filter(
+        (item) => item.airport === this.arrival
+      );
+      this.weatherService.weather(this.cityArrival).subscribe({
+        next: (data: any) => {
+          this.dailyWeatherForecastArrival.push({
+            day: new Date(data.list[0].dt_txt).getDate(),
+            date: new Date(data.list[0].dt_txt),
+            temp: Math.round(data.list[0].main.feels_like),
+            weather: data.list[0].weather[0].main,
+          });
+
+          for (let i = 1; i < data.list.length; i++) {
+            console.log(i)
+            if (
+              new Date(data.list[i].dt_txt).getDate() !==
+              this.dailyWeatherForecastArrival[
+                this.dailyWeatherForecastArrival.length - 1
+              ].day
+            ) {
+              this.dailyWeatherForecastArrival.push({
+                day: new Date(data.list[i].dt_txt).getDate(),
+                date: new Date(data.list[i].dt_txt),
+                temp: Math.round(data.list[i].main.feels_like),
+                weather: data.list[i].weather[0].main,
+              });
+            }
+          }
+        },
+        error: (err: any) => console.error(err),
+      });
     }
   }
 
@@ -184,10 +227,12 @@ export class FlyChoiceComponent {
 
     passengersInfo.afterClosed().subscribe((result) => {
       this.passengersNumber = result.adults + result.children + result.infants;
-      this.flyChoiceService.setPassengers({'adults':result.adults, 'children':result.children, 'infants':result.infants})
+      this.flyChoiceService.setPassengers({
+        adults: result.adults,
+        children: result.children,
+        infants: result.infants,
+      });
     });
-    
-    
   }
 
   buy() {
@@ -203,5 +248,6 @@ export class FlyChoiceComponent {
         left: '',
         right: '',
       },
-  })};
+    });
+  }
 }

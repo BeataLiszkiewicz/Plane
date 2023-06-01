@@ -12,6 +12,7 @@ export class SummaryComponent {
   arrival: string = '';
   disabled: Array<string> = [];
   extraLuggage: number = 0;
+  extraPlusLuggage: number = 0;
   departure: string = '';
   flyDetails: any;
   id: string = '0';
@@ -31,13 +32,6 @@ export class SummaryComponent {
 
   @ViewChild('tickets', { static: true })
   tickets!: ElementRef;
-
-  ngOnChange() {
-    this.totalCost = this.summary.passenger.reduce(
-      (sum: number, person: any) => sum + person.cost,
-      0
-    );
-  }
 
   ngOnInit() {
     this.summary = {
@@ -84,6 +78,7 @@ export class SummaryComponent {
         status: 'Adult',
         cost: this.summary.price,
         seat: '',
+        luggage:0 
       });
     }
     for (let i = 0; i < this.passengers.children; i++) {
@@ -91,10 +86,11 @@ export class SummaryComponent {
         status: 'Child',
         cost: Math.round(this.summary.price * 0.7),
         seat: '',
+        luggage:0
       });
     }
     for (let i = 0; i < this.passengers.infants; i++) {
-      this.summary.passenger.push({ status: 'Infant', cost: 0, seat: '' });
+      this.summary.passenger.push({ status: 'Infant', cost: 0, seat: '', luggage:0 });
     }
 
     // luggage cost
@@ -102,15 +98,37 @@ export class SummaryComponent {
     switch (this.summary.currency) {
       case 'PLN':
         this.extraLuggage = 150;
+        this.extraPlusLuggage = 175;
         break;
       case 'EUR':
         this.extraLuggage = 33;
+        this.extraPlusLuggage = 39;
         break;
       case 'USD':
         this.extraLuggage = 35;
+        this.extraPlusLuggage = 41;
         break;
     }
+
+    this.calculateFinalCost();
   }
+  changeLuggage(param: any) {
+    switch (param[0]) {
+      case 'standard':
+        this.summary.passenger[param[1]].luggage=0;
+        break;
+      case 'extra':
+        this.summary.passenger[param[1]].luggage=this.extraLuggage;
+        break;
+      case 'extra+':
+        this.summary.passenger[param[1]].luggage=this.extraPlusLuggage;
+        break;
+
+    }
+    console.log(this.summary.passenger)
+    this.calculateFinalCost();
+  }
+
   openPlane() {
     this.waiting = true;
   }
@@ -127,8 +145,13 @@ export class SummaryComponent {
             (el.target.name = 'checked'),
             this.disabled.push(el.target.innerHTML),
             console.log(el);
-        }else{
-          el.target.name='clear'
+        } else {
+          for (let i = 0; i < this.summary.passenger.length; i++) {
+            if (this.summary.passenger[i].seat === el.target.innerHTML) {
+              this.summary.passenger[i].seat = '';
+            }
+          }
+          el.target.name = 'clear';
         }
       },
       error: (err) => console.log('Wystąpił błąd', err),
@@ -140,9 +163,15 @@ export class SummaryComponent {
     setTimeout(() => {
       {
         this.seatSubscription!.unsubscribe(),
-          (this.waiting = false),
-          console.log('unsubscribed');
+          (this.waiting = false)
       }
     }, 10);
+  }
+
+  calculateFinalCost() {
+    this.totalCost = this.summary.passenger.reduce(
+      (sum: number, person: any) => sum + (person.cost+person.luggage),
+      0
+    );
   }
 }

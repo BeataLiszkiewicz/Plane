@@ -13,6 +13,19 @@
   color: #00adfb ;
   font-weight: bold;
 
+  select{
+    display: inline;
+    border: none;
+    background-color: inherit;
+
+    option{
+      border: none;
+      font-size: 1.3rem;
+    color: #00adfb ;
+    font-weight: bold;
+    }
+  }
+
   @media (orientation:landscape){
     top:75%;
     left:20vmin;
