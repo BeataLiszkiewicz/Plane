@@ -1,6 +1,6 @@
-.weather{
+.weather {
   position: absolute;
-  top:7rem;
+  top: 7rem;
   left: 0;
   margin: 0;
   padding: 0;
@@ -10,37 +10,65 @@
   justify-content: center;
   align-items: center;
   font-size: 1.3rem;
-  color: #00adfb ;
+  color: #00adfb;
   font-weight: bold;
 
-  select{
-    display: inline;
-    border: none;
-    background-color: inherit;
+  p {
+    font-size: 0.9rem;
+    margin: 0;
+    padding: 0;
+  }
 
-    option{
+  .option {
+    display: flex;
+    gap: 1rem;
+    width: 95%;
+
+    label {
+      font-size: 1.3rem;
+      color: #00adfb;
+      font-weight: bold;
+      font-family: Tahoma, sans-serif;
+    }
+
+    select {
+      display: inline;
+      border: none;
+      border-radius: 5px;
+      height: 1.3rem;
+      // min-width: 30%;
       border: none;
       font-size: 1.3rem;
-    color: #00adfb ;
-    font-weight: bold;
+      color: #00adfb;
+      font-weight: bold;
+  
+      option {
+        border: none;
+        font-size: 1.3rem;
+        color: #00adfb;
+        font-weight: bold;
+        font-family: Tahoma, sans-serif;;
+      }
     }
   }
 
-  @media (orientation:landscape){
-    top:75%;
-    left:20vmin;
+  
+
+  @media (orientation: landscape) {
+    top: 75%;
+    left: 20vmin;
     width: 80vmin;
     z-index: 99;
     font-size: 1.1rem;
   }
 
-  .weatherForecast{
+  .weatherForecast {
     display: flex;
-    gap:0.5rem;
+    gap: 0.5rem;
     justify-content: center;
     width: 95%;
-    
-    .weatherDay{
+
+    .weatherDay {
       padding-top: 0.5rem;
       width: 18%;
       aspect-ratio: 1;
@@ -49,12 +77,12 @@
       justify-content: center;
       box-shadow: 1px 1px 3px #00adfb;
       border-radius: 5%;
-      
-      @media (orientation:landscape){
+
+      @media (orientation: landscape) {
         height: 15vmin;
       }
 
-      p{
+      p {
         margin: 0;
         padding: 0;
         font-size: 1rem;
@@ -62,17 +90,16 @@
         text-align: center;
       }
 
-      img{
+      img {
         width: 90%;
+        height: 80%;
 
-        @media (orientation:landscape){
+        @media (orientation: landscape) {
           height: 60%;
         }
       }
     }
   }
-
-  
 }
 .container {
   width: 100vw;
@@ -88,13 +115,13 @@
   bottom: 0;
   background-image: url("../../../assets/pictures/sky.jpg");
 
-  @media (orientation:landscape){
+  @media (orientation: landscape) {
     background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
     height: 80vmin;
-    
-    @media (min-height:720px){
+
+    @media (min-height: 720px) {
       height: 80%;
     }
   }
@@ -107,10 +134,10 @@
     gap: 0.5rem;
     border-radius: 5%;
     position: absolute;
-    top:0;
+    top: 0;
 
     @media (orientation: landscape) {
-      width:80%;
+      width: 80%;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
@@ -154,7 +181,7 @@
       box-shadow: 10px 10px 20px #00adfb;
 
       @media (orientation: landscape) {
-       margin-left: 50%;
+        margin-left: 50%;
       }
     }
   }

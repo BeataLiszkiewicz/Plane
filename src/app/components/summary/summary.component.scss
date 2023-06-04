@@ -1,59 +1,136 @@
 .container {
-width: 100%;
+  width: 100%;
   position: absolute;
   top: 5rem;
-  display: flex;
-  flex-direction: column;
+  left: 0;
+  display: grid;
+  grid-template-rows: 10% 50rem 400px;
+  margin: 0;
+  padding: 0;
+
   .flyDetails {
+    grid-row: 1;
     display: flex;
     position: relative;
     top: 0;
   }
   .tickets {
+    grid-row: 2;
     border-top: 3px outset #2f43bb;
     overflow: scroll;
-    scrollbar-color: #2f43bb #b5cae1;
-    scrollbar-width: thin;
     max-height: 50rem;
+    border-bottom: 3px outset #2f43bb;
+   
+    
+    
+    button {
+      box-shadow: 10px 10px 20px #00adfb;
+      width: 100%;
+    }
     .passenger {
-      box-shadow: 1px 1px 3px #00adfb;
+    height: 20%;   
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;    
       .personalDetails {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(4, 1fr);
+        height: 1.3rem;
+        
       }
     }
   }
   .plane {
+    grid-row: 4;
     width: 100%;
+    height: 90vh;
     background-color: black;
-    border-radius: 50% 50% 0 0;
+    transform: scaleX(3);
+    transform: scaleY(2);
+    border-radius: 40% 40% 0 0;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
     .seats {
-       height: 80%;
+      height: 65%;
+      width: 100%;
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: 10% repeat(2, 1fr) 15% repeat(2, 1fr) 10%;
       border: none;
+      position: absolute;
+      top: 15%;
 
       button {
         background-color: orange;
         text-align: left;
-       border:1px solid white;
+        border: 1px solid white;
+        text-align: center;
+        font-weight: bold;
       }
 
-      button[name="checked"]{
+      button[name="checked"] {
         background-color: red;
-       }
+      }
       .columnA {
-        grid-column: 1;
+        grid-column: 2;
       }
       .columnB {
+        grid-column: 3;
+        margin-left: 0.5rem;
+      }
+      .columnC {
+        grid-column: 5;
+      }
+      .columnD {
+        grid-column: 6;
+        margin-left: 0.5rem;
+      }
+    }
+
+    .moreRows {
+      height: 65%;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 10% repeat(3, 1fr) 15% repeat(3, 1fr) 10%;
+      border: none;
+      position: absolute;
+      top: 15%;
+
+      button {
+        background-color: orange;
+        text-align: left;
+        border: 1px solid white;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      button[name="checked"] {
+        background-color: red;
+      }
+      .columnA {
         grid-column: 2;
+      }
+      .columnB {
+        grid-column: 3;
+        margin-left: 0.5rem;
       }
       .columnC {
         grid-column: 4;
+        margin-left: 0.5rem;
       }
       .columnD {
-        grid-column: 5;
+        grid-column: 6;
+      }
+      .columnE {
+        grid-column: 7;
+        margin-left: 0.5rem;
+      }
+      .columnF {
+        grid-column: 8;
+        margin-left: 0.5rem;
       }
     }
   }

@@ -1,10 +1,12 @@
-<div class="weather" *ngIf="departure.value !== ''||arrival.value!==''">
-  <select name="place" [(ngModel)]="weatherPlace" #place>
-    <option value="" default disabled>Chose city for weather forecast</option>
-    <option *ngIf="departure.value !== ''" value="{{ departure.value }}">{{ departure.value }}</option>
-    <option *ngIf="arrival.value !== ''" value="{{ arrival.value }}">{{ arrival.value }}</option>
-  </select>
-  <label for="place" *ngIf="weatherPlace!==''"> weather forecast</label>
+<div class="weather" *ngIf="departure.value !== ''||arrival.value!==''" >
+  <div class="option">
+    <select name="place" #place [(ngModel)]="weatherPlace" [style.boxShadow]="weatherPlace===''?'10px 10px 20px #00adfb':'none'">
+      <option *ngIf="departure.value !== ''" value="{{ departure.value }}">{{ departure.value }}</option>
+      <option *ngIf="arrival.value !== ''" value="{{ arrival.value }}">{{ arrival.value }}</option>
+    </select>
+    <label for="place"> weather forecast</label>
+  </div>
+  
   <div class="weatherForecast">
     <ng-container *ngIf="weatherPlace===departure.value; else arrivalPlace">
       <ng-container *ngFor="let day of dailyWeatherForecast">
@@ -105,7 +107,7 @@
       "
       (click)="buy()"
     >
-      BUY
+      BOOK YOUR FLIGHT
     </button>
   </form>
 </div>

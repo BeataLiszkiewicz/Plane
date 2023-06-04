@@ -108,12 +108,12 @@ export class DepartureCalendarComponent {
 
     // delete price from the past
     for (let i = 0; i < this.calendar[0].days.length; i++) {
-      if (this.calendar[0].days[i] === '') {
+      if (this.calendar[0].days[i][1] === undefined) {
         this.emptyDays += 1;
       }
     }
+    for (let j = 0; j < (this.emptyDays + (this.calendar[0].today - 1)); j++) {
 
-    for (let j = 0; j < this.emptyDays + this.calendar[0].today - 1; j++) {
       this.calendar[0].days[j][1] = '';
     }
   }

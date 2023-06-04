@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -17,7 +17,7 @@ import { PassengerSelectionComponent } from '../passenger-selection/passenger-se
 import { WeatherApiService } from 'src/app/services/weather-api.service';
 import coordinates from './../../../assets/database/cityCoordinates.json';
 import { LogInComponent } from '../log-in/log-in.component';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-fly-choice',
@@ -26,6 +26,7 @@ import { Subscription } from 'rxjs';
 })
 export class FlyChoiceComponent {
   adults: number = 0;
+  airportsList:Array<string>=[];
   allAirports: any;
   allDepartureAirports: number = 0;
   arrival: string = '';
@@ -47,8 +48,9 @@ export class FlyChoiceComponent {
   weatherArrivalSubscription: Subscription | undefined;
   weatherForecast: any;
   weatherForecastArrival: any;
-  weatherPlace: string = '';
-  weatherSubscription: Subscription | undefined;
+  weatherPlace:string="";
+  weatherPlaceChoice:Array<string>=[];
+ 
 
   constructor(
     private readonly form: FormBuilder,
@@ -60,7 +62,8 @@ export class FlyChoiceComponent {
     private weatherService: WeatherApiService
   ) {}
 
-  
+  @ViewChild('place', { static: true })
+  place!: ElementRef;
 
   ngOnInit() {
     this.barOnServise.setData('showLogin');
@@ -91,11 +94,20 @@ export class FlyChoiceComponent {
       },
       error: (err: any) => console.log(err),
     });
+    this.airportsList=[...this.availableArrivals,...this.availableDepartures]
+    
+   
   }
 
+ngAfterViewInit(){
+  
+  
+}
   sort(param: Array<string>) {
     param.sort();
   }
+
+ 
 
   arrivalAirportsOpen(param: string) {
     if (param !== '' && this.departure !== param) {
@@ -132,10 +144,12 @@ export class FlyChoiceComponent {
               });
             }
           }
-          console.log(this.dailyWeatherForecast);
         },
         error: (err: any) => console.error(err),
       });
+      this.choiceOfWeatherPlace()
+
+
     }
   }
 
@@ -173,7 +187,6 @@ export class FlyChoiceComponent {
           });
 
           for (let i = 1; i < data.list.length; i++) {
-            console.log(i)
             if (
               new Date(data.list[i].dt_txt).getDate() !==
               this.dailyWeatherForecastArrival[
@@ -191,6 +204,9 @@ export class FlyChoiceComponent {
         },
         error: (err: any) => console.error(err),
       });
+      this.choiceOfWeatherPlace();
+      
+      
     }
   }
 
@@ -237,7 +253,7 @@ export class FlyChoiceComponent {
 
   buy() {
     const logIn = this.dialogRef.open(LogInComponent, {
-      disableClose: true,
+      disableClose: false,
       hasBackdrop: true,
       backdropClass: '',
       minWidth: '80%',
@@ -250,4 +266,14 @@ export class FlyChoiceComponent {
       },
     });
   }
+
+  choiceOfWeatherPlace(){
+    this.weatherPlaceChoice=this.airportsList.filter((el:string)=>el===this.departure||el===this.arrival)
+    this.weatherPlaceChoice.unshift('Weather forecast')
+    
+  }
+  
+
+  
+ 
 }

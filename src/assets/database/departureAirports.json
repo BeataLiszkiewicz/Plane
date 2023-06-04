@@ -5,7 +5,7 @@
     },
     {
       "departureAirport": "Zielona Góra",
-      "arrivalAirports": ["Antalya", "Warszawa-Chopina", "Gdańsk"]
+      "arrivalAirports": ["Antalya", "Warszawa-Chopina", "Gdańsk", "Nowy Jork"]
     },
     {
       "departureAirport": "Lublin",

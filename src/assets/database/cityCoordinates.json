@@ -10,5 +10,6 @@
 {"airport":"Gdańsk", "lat":"54.35", "lon":"18.62"},
 {"airport":"Lublin", "lat":"51.24", "lon":"22.60"},
 {"airport":"Dublin", "lat":"53.33", "lon":"-6.26"},
-{"airport":"Londyn", "lat":"51.47", "lon":"-0.38"}
+{"airport":"Londyn", "lat":"51.47", "lon":"-0.38"},
+{"airport":"Nowy Jork","lat":"40.65", "lon":"-73.78"}
 ]

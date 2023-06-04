@@ -5,6 +5,8 @@
     <p class="total">Total cost:{{ totalCost }} {{ summary.currency }}</p>
   </div>
   <div class="tickets" #tickets>
+    
+    <button (click)="cancelSeat()">Cancel seat choice</button>
     <div
       class="passenger"
       *ngFor="let person of summary.passenger; let i = index"
@@ -17,7 +19,7 @@
         <input type="text" name="surname" />
         <ng-container *ngIf="person.status!=='Infant'">
         <label for="seat" >Seat:</label>
-        <input type="text" name="seat" id="{{i}}" (click)="seat(i)" value="{{person.seat}}" (focus)="openPlane()"/>
+        <input type="text" name="seat" id="{{i}}" (click)="seat(i)" value="{{person.seat}}" (focus)="openPlane([i,person.seat])" [disabled]="person.seat!==''"/>
         </ng-container>
         <label for="luggage"></label>
         <select name="luggage" #luggage (change)="changeLuggage([luggage.value, i])">
@@ -31,9 +33,10 @@
       </div>
     </div>
   </div>
-  <div class="plane" #plane [hidden]="!waiting">
+  
+  <div class="plane" #plane>
     
-      <div class="seats">
+      <div class="seats" *ngIf="distance==='short';else biggerPlane">
         <ng-container *ngFor="let _ of [].constructor(20); let i = index">
            
         <button class="columnA button" (click)="unsubscribe()" value="{{i+1}}A" name="clear">{{ i+1 }}A</button>
@@ -44,6 +47,20 @@
           
         </ng-container>
       </div>
+      <ng-template #biggerPlane>
+        <div [ngClass]="[distance==='mid'?'seats':'moreRows']">
+            <ng-container *ngFor="let _ of [].constructor(36); let i = index">
+               
+            <button class="columnA button" (click)="unsubscribe()" value="{{i+1}}A" name="clear">{{ i+1 }}A</button>
+              <button class="columnB button" (click)="unsubscribe()" value="{{i+1}}B" name="clear">{{i+1}}B</button>
+              <button class="columnC button" (click)="unsubscribe()" value="{{i+1}}C" name="clear">{{i+1}}C</button>
+              <button class="columnD button" (click)="unsubscribe()" value="{{i+1}}D" name="clear">{{i+1}}D</button>
+              <button class="columnE button" (click)="unsubscribe()" value="{{i+1}}D" name="clear" *ngIf="distance==='long'">{{i+1}}E</button> 
+              <button class="columnF button" (click)="unsubscribe()" value="{{i+1}}D" name="clear" *ngIf="distance==='long'">{{i+1}}F</button>
+            </ng-container>
+          </div>
+      </ng-template>
+      
     
   </div>
 </div>

@@ -5,12 +5,21 @@
   width: 100%;
   border-radius: 5%;
 }
+.bookFlight{
+ position: relative;
+ top:-5rem;
+left:60%;
+ height: 4rem;
+ background-color: #2f43bb;
+ color: white;
+ border-radius: 5%;
+}
 .container {
   width: 80vw;
   height: 70vh;
   display: grid;
   grid-template-columns: 45% 10% 45%;
-  grid-template-rows: 45% 10% 45%;
+  grid-template-rows: 45% 10% 45% 10%;
   margin: 0 auto;
   box-sizing: border-box;
   text-align: center;
