@@ -6,6 +6,7 @@ import { FlyChoiceComponent } from './components/fly-choice/fly-choice.component
 import { DepartureCalendarComponent } from './components/departure-calendar/departure-calendar.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { SummaryComponent } from './components/summary/summary.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
 
 const routes:Routes=[
   {path:'', redirectTo:'firstPage', pathMatch:'full'},
@@ -13,7 +14,8 @@ const routes:Routes=[
   {path:'flyChoice', component:FlyChoiceComponent},
   {path:'calendar',component:DepartureCalendarComponent},
   {path:'login', component:LogInComponent},
-  {path:'summary', component:SummaryComponent}
+  {path:'summary', component:SummaryComponent},
+  {path:'createUser', component:CreateUserComponent}
 ]
 
 @NgModule({

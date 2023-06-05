@@ -1,0 +1,17 @@
+<form #createUser="ngForm" (ngSubmit)="haveUser(createUser, $event)">
+    <label for="login">Login: </label>
+    <input type="text" ngModel #login="ngModel" appUserExist name="login">
+    <div *ngIf="login.errors?.appUserExist">User name already exist. Please chose other.</div>
+    <!-- <div *ngIf="login.errors?.required && login.touched" >This field is mandatory</div>
+    <div *ngIf="login.errors?.pattern &&login.dirty">Login may contain only letters and numbers</div>
+    <div *ngIf="login.errors?.minLength&&login.dirty">Login to short</div> -->
+    <!-- <label for="password">Password: </label>
+    <input type="password" formControlName="password">
+    <label for="name">Name: </label>
+    <input type="text" formControlName="name">
+    <label for="surname">Surname: </label>
+    <input type="text" formControlName="surname">
+    <label for="email">Email:</label>
+    <input type="email" formControlName="email"> -->
+    <button type="submit">Create user</button>
+</form>

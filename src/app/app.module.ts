@@ -17,6 +17,8 @@ import { PassengerSelectionComponent } from './components/passenger-selection/pa
 import { LogInComponent } from './components/log-in/log-in.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { UserExistDirective } from './directives/user-exist.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     PassengerSelectionComponent,
     LogInComponent,
     SummaryComponent,
+    CreateUserComponent,
+    UserExistDirective,
   ],
   imports: [
     BrowserModule,
