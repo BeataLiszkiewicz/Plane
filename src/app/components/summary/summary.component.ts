@@ -9,6 +9,7 @@ import { Subscription, fromEvent } from 'rxjs';
 import { DataFromCalendarService } from 'src/app/services/data-from-calendar.service';
 import { FlyChoiceDataService } from 'src/app/services/fly-choice-data.service';
 import data from './../../../assets/database/flyDistance.json';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-summary',
@@ -36,7 +37,8 @@ export class SummaryComponent {
   constructor(
     private readonly fromCalendar: DataFromCalendarService,
     private readonly fromFlyChoice: FlyChoiceDataService,
-    private myElement: ElementRef
+    private myElement: ElementRef,
+    private readonly UserService: UsersService
   ) {}
   @ViewChild('plane', { static: true })
   plane!: ElementRef;
@@ -46,6 +48,7 @@ export class SummaryComponent {
 
   @ViewChildren('button') buttons!: QueryList<any>;
 
+  firstUser: any = { name: '', surname: '' };
   ngOnInit() {
     this.summary = {
       departDate: '',
@@ -109,6 +112,15 @@ export class SummaryComponent {
       });
     }
 
+    // first passenger
+
+    if (this.UserService.oneUser.length !== 0) {
+      this.firstUser.name = this.UserService.oneUser[0].name;
+      this.firstUser.surname = this.UserService.oneUser[0].surname;
+    } else if (this.UserService.temporaryUser.name !== '') {
+      this.firstUser.name = this.UserService.temporaryUser.name;
+      this.firstUser.surname = this.UserService.temporaryUser.surname;
+    }
     // luggage cost
 
     switch (this.summary.currency) {
@@ -126,8 +138,8 @@ export class SummaryComponent {
         break;
     }
     // Fly distance
-    this.flyDistanceInfo=data;
-    this.distance=this.flyDistanceInfo[0][this.summary.arrival]
+    this.flyDistanceInfo = data;
+    this.distance = this.flyDistanceInfo[0][this.summary.arrival];
     // Calculate total cost
     this.calculateFinalCost();
   }

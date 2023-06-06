@@ -1,3 +1,7 @@
+<div class="container">
+    <h2>Create user account</h2>
+    <button (click)="close()">X</button>
+</div>
 <form #createUser="ngForm" (ngSubmit)="haveUser(createUser, $event)">
   <label for="login">Login: </label>
   <input
@@ -24,7 +28,7 @@
     {{
       login.errors?.minlength.requiredLength -
         login.errors?.minlength.actualLength
-    }} digits to go
+    }} <span *ngIf="(login.errors?.minlength.requiredLength -login.errors?.minlength.actualLength)===1; else more">digit</span> <ng-template #more>digits</ng-template> to go
   </div>
   <label for="password">Password: </label>
   <input type="password" ngModel #password="ngModel" name="password" pattern="^[A-Za-z]+$|^[0-9]+$" maxlength="6" required appPasswordLetters/><br>

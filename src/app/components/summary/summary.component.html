@@ -13,10 +13,10 @@
     >
       <div class="ticketGroup">Ticket class: {{ person.status }}</div>
       <div class="personalDetails">
-        <label for="name">Name:</label>
-        <input type="text" name="name" />
+        <label for="name" >Name:</label>
+        <input type="text" name="name" [value]="i===0?firstUser.name:''" />
         <label for="surname">Surname:</label>
-        <input type="text" name="surname" />
+        <input type="text" name="surname" [value]="i===0?firstUser.surname:''" />
         <ng-container *ngIf="person.status!=='Infant'">
         <label for="seat" >Seat:</label>
         <input type="text" name="seat" id="{{i}}" (click)="seat(i)" value="{{person.seat}}" (focus)="openPlane([i,person.seat])" [disabled]="person.seat!==''"/>
