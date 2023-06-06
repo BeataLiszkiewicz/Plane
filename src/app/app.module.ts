@@ -19,6 +19,7 @@ import { SummaryComponent } from './components/summary/summary.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { UserExistDirective } from './directives/user-exist.directive';
+import { PasswordLettersDirective } from './directives/password-letters.directive';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UserExistDirective } from './directives/user-exist.directive';
     SummaryComponent,
     CreateUserComponent,
     UserExistDirective,
+    PasswordLettersDirective,
   ],
   imports: [
     BrowserModule,

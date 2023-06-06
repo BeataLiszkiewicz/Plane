@@ -12,23 +12,7 @@ import { UserExistDirective } from 'src/app/directives/user-exist.directive';
 export class CreateUserComponent {
 constructor(){}
 
-createUser = new FormGroup({
-  login:new FormControl("", {
-    validators:[Validators.required,  Validators.minLength(4),Validators.pattern('[A-Za-z0-9]+')]
-  }),
-  password: new FormControl("", {
-    validators:[Validators.required ]
-  }),
-  name: new FormControl("", {
-    validators:[Validators.required]
-  }),
-  surname:new FormControl("", {
-    validators:[Validators.required]
-  }),
-  email:new FormControl("", {
-    validators:[Validators.required]
-  })
-  });
+
 
   
  
