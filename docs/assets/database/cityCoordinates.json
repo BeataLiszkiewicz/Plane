@@ -1,0 +1,15 @@
+[{"airport":"Warszawa-Radom", "lat":"51.39", "lon":"21.20"},
+{"airport":"Paryż", "lat":"48.86", "lon":"2.29"},
+{"airport":"Preveza", "lat":"38.95", "lon":"20.75"},
+{"airport":"Rzym", "lat":"41.89", "lon":"12.48"},
+{"airport":"Tirana", "lat":"41.32", "lon":"19.82"},
+{"airport":"Warna", "lat":"43.21", "lon":"27.89"},
+{"airport":"Zielona Góra", "lat":"51.92", "lon":"15.50"},
+{"airport":"Antalya", "lat":"36.90", "lon":"30.71"},
+{"airport":"Warszawa-Chopina", "lat":"52.18", "lon":"20.97"},
+{"airport":"Gdańsk", "lat":"54.35", "lon":"18.62"},
+{"airport":"Lublin", "lat":"51.24", "lon":"22.60"},
+{"airport":"Dublin", "lat":"53.33", "lon":"-6.26"},
+{"airport":"Londyn", "lat":"51.47", "lon":"-0.38"},
+{"airport":"Nowy Jork","lat":"40.65", "lon":"-73.78"}
+]
