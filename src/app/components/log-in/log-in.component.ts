@@ -11,38 +11,46 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./log-in.component.scss'],
 })
 export class LogInComponent {
-  incorrectLogin:boolean=false;
-  incorrectdata:boolean=false;
+  incorrectLogin: boolean = false;
+  incorrectdata: boolean = false;
   login: string = '';
+  onlyLogin: boolean = false;
   password: string = '';
-  
 
   constructor(
     private readonly router: Router,
     private dialogRef: MatDialog,
     private readonly UserService: UsersService
   ) {}
-  ngOnDestroy(){
-    this.incorrectLogin=false;
-    this.incorrectdata=false;
+
+  ngOnInit() {
+    this.onlyLogin = this.UserService.onlyLogIn;
+  }
+  ngOnDestroy() {
+    this.incorrectLogin = false;
+    this.incorrectdata = false;
+    this.UserService.changeOnlyLogIn(false);
   }
   continue(param: any) {
     if (this.login !== '' && this.password !== '') {
       this.UserService.logIn([this.login, this.password]);
-      
+
       if (this.UserService.oneUser.length > 0) {
-        this.incorrectLogin=false;
-        this.router.navigate(['/summary']);
+        this.incorrectLogin = false;
+        if (!this.onlyLogin) {
+          this.router.navigate(['/summary']);
+        }
+
         this.dialogRef.closeAll();
-      } else{
-        this.incorrectLogin=true;
+      } else {
+        this.incorrectLogin = true;
       }
-    }else if (param[1]===true){
+    } else if (param[1] === true) {
       this.UserService.createTemporaryUser(param[0]);
       this.router.navigate(['/summary']);
       this.dialogRef.closeAll();
-    }else{
-      this.incorrectdata=true
+    } else {
+      this.incorrectdata = true;
     }
   }
 

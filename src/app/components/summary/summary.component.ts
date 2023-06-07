@@ -155,7 +155,7 @@ export class SummaryComponent {
         this.summary.passenger[param[1]].luggage = this.extraPlusLuggage;
         break;
     }
-    console.log(this.summary.passenger);
+    
     this.calculateFinalCost();
   }
 
@@ -192,6 +192,7 @@ export class SummaryComponent {
   }
   unsubscribe() {
     this.tickets.nativeElement.scrollIntoView();
+    console.log('click')
     if (!this.getSeat) {
       setTimeout(() => {
         {

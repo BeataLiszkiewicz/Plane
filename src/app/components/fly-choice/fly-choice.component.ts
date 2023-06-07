@@ -18,6 +18,7 @@ import { WeatherApiService } from 'src/app/services/weather-api.service';
 import coordinates from './../../../assets/database/cityCoordinates.json';
 import { LogInComponent } from '../log-in/log-in.component';
 import { BehaviorSubject, Subscription, fromEvent } from 'rxjs';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-fly-choice',
@@ -59,7 +60,8 @@ export class FlyChoiceComponent {
     private barOnServise: BarOnService,
     private dialogRef: MatDialog,
     private dataService: DataFromCalendarService,
-    private weatherService: WeatherApiService
+    private weatherService: WeatherApiService,
+    private userService:UsersService
   ) {}
 
   @ViewChild('place', { static: true })
@@ -252,19 +254,24 @@ ngAfterViewInit(){
   }
 
   buy() {
-    const logIn = this.dialogRef.open(LogInComponent, {
-      disableClose: false,
-      hasBackdrop: true,
-      backdropClass: '',
-      minWidth: '80%',
-      height: '',
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
-      },
-    });
+    if (this.userService.oneUser.length>0){
+      this.router.navigate(['/summary']);
+    }else{
+      const logIn = this.dialogRef.open(LogInComponent, {
+        disableClose: false,
+        hasBackdrop: true,
+        backdropClass: '',
+        minWidth: '80%',
+        height: '',
+        position: {
+          top: '',
+          bottom: '',
+          left: '',
+          right: '',
+        },
+      });
+    }
+    
   }
 
   choiceOfWeatherPlace(){

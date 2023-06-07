@@ -20,6 +20,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { UserExistDirective } from './directives/user-exist.directive';
 import { PasswordLettersDirective } from './directives/password-letters.directive';
+import { IsLoggedComponent } from './components/is-logged/is-logged.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { PasswordLettersDirective } from './directives/password-letters.directiv
     CreateUserComponent,
     UserExistDirective,
     PasswordLettersDirective,
+    IsLoggedComponent,
   ],
   imports: [
     BrowserModule,

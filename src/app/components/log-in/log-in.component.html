@@ -12,7 +12,7 @@
   <div class="signIn">
     <p>Have no account? Want to have access to fly statuses, history of transaction, member discounts? <span (click)="create()">Sign in.</span></p>
   </div>
-  <div class="withoutAccount">
+  <div class="withoutAccount" [hidden]="onlyLogin">
     <p>To continue without login in, plese fill in form below</p>
     <form #withoutAccount="ngForm" class="noAccount">
         <label for="name">Name:</label>

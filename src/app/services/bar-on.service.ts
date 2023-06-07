@@ -13,6 +13,7 @@ export class BarOnService {
 
   setData(el:string){
    this.unhide.next(el)
+   console.log('barOn from service', this.unhide)
   }
   getData(){
     return this.unhide.asObservable()

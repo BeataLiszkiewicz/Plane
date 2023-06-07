@@ -1,16 +1,14 @@
 <div class="background">
   <div class="bar">
-      <div class="logo">
-          <img src="../assets/pictures/logo.png" alt="Company logo">
-      </div>
-      <div class=""></div>
-      <div class="login" *ngIf="visible==='showLogin'"><div class="logoIcon"></div></div>
+    <div class="logo">
+      <img src="../assets/pictures/logo.png" alt="Company logo" />
+    </div>
+    <div class=""></div>
+    <div class="login" [hidden]="visible !== 'showLogin'" (click)="openLogIn()">
+      <div class="logoIcon"></div>
+    </div>
   </div>
-  <div class="loginTable">
-      
-  </div>
+  <div class="loginTable"></div>
 
-  
-  <router-outlet></router-outlet> 
+  <router-outlet></router-outlet>
 </div>
-   

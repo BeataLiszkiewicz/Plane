@@ -35,7 +35,7 @@
   </div>
   
   <div class="plane" #plane>
-    
+    <h4 *ngIf="!waiting">To chose a seat, click at first passenger seat field</h4>
       <div class="seats" *ngIf="distance==='short';else biggerPlane">
         <ng-container *ngFor="let _ of [].constructor(20); let i = index">
            
@@ -55,8 +55,8 @@
               <button class="columnB button" (click)="unsubscribe()" value="{{i+1}}B" name="clear">{{i+1}}B</button>
               <button class="columnC button" (click)="unsubscribe()" value="{{i+1}}C" name="clear">{{i+1}}C</button>
               <button class="columnD button" (click)="unsubscribe()" value="{{i+1}}D" name="clear">{{i+1}}D</button>
-              <button class="columnE button" (click)="unsubscribe()" value="{{i+1}}D" name="clear" *ngIf="distance==='long'">{{i+1}}E</button> 
-              <button class="columnF button" (click)="unsubscribe()" value="{{i+1}}D" name="clear" *ngIf="distance==='long'">{{i+1}}F</button>
+              <button class="columnE button" (click)="unsubscribe()" value="{{i+1}}E" name="clear" *ngIf="distance==='long'">{{i+1}}E</button> 
+              <button class="columnF button" (click)="unsubscribe()" value="{{i+1}}F" name="clear" *ngIf="distance==='long'">{{i+1}}F</button>
             </ng-container>
           </div>
       </ng-template>

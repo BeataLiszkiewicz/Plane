@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, Subscriber, delay } from 'rxjs';
 export class UsersService {
   exist:any;
   oneUser:any=[];
+  onlyLogIn:boolean=false;
   temporaryUser:any;
   users: any = [
     {
@@ -46,5 +47,9 @@ export class UsersService {
 
   logIn(param:any){
     this.oneUser=this.users.filter((el:any)=>el.login.toLowerCase()===param[0].toLowerCase()&&el.password===param[1]);
+  }
+
+  changeOnlyLogIn(param:boolean){
+    this.onlyLogIn=param
   }
 }
