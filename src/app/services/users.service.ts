@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subscriber, delay } from 'rxjs';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  exist:any;
-  oneUser:any=[];
+  
+  oneUser:User[]=[];
   onlyLogIn:boolean=false;
   temporaryUser:any;
-  users: any = [
+  users: User[] = [
     {
       login: 'Admin',
       password: 'Admin',

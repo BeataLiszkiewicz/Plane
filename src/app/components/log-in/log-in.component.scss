@@ -1,33 +1,32 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    .logIn{
-        width: 95%;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2,1fr);
-        box-shadow: 1px 1px 3px #00adfb;
-        border-radius: 5%;
-    
+  .logIn {
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    box-shadow: 1px 1px 3px #00adfb;
+    border-radius: 5%;
+  }
+
+  .signIn {
+    span {
+      color: #2f43bb;
+      font-weight: 120;
+      cursor: pointer;
     }
-    
-    .signIn{
-        span{
-            color:#2f43bb;
-            font-weight: 120;
-            cursor: pointer;
-        }
-    }
-    
-    .noAccount{
-        width: 95%;
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-        grid-template-rows: repeat(3, 1fr);
-        box-shadow: 1px 1px 3px #00adfb;
-        border-radius: 5%;
-    }
+  }
+
+  .noAccount {
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    box-shadow: 1px 1px 3px #00adfb;
+    border-radius: 5%;
+  }
 }

@@ -1,8 +1,8 @@
 <div class="container">
-    <h2>Create user account</h2>
-    <button (click)="close()">X</button>
+  <h2>Create user account</h2>
+  <button (click)="close()">X</button>
 </div>
-<form #createUser="ngForm" (ngSubmit)="haveUser(createUser, $event)">
+<form #createUser="ngForm" (ngSubmit)="haveUser(createUser)">
   <label for="login">Login: </label>
   <input
     type="text"
@@ -12,7 +12,7 @@
     name="login"
     minlength="5"
     pattern="\w+"
-  /><br>
+  /><br />
   <div *ngIf="login.errors?.appUserExist">
     User name already exist. Please chose other.
   </div>
@@ -28,14 +28,50 @@
     {{
       login.errors?.minlength.requiredLength -
         login.errors?.minlength.actualLength
-    }} <span *ngIf="(login.errors?.minlength.requiredLength -login.errors?.minlength.actualLength)===1; else more">digit</span> <ng-template #more>digits</ng-template> to go
+    }}
+    <span
+      *ngIf="
+        login.errors?.minlength.requiredLength -
+          login.errors?.minlength.actualLength ===
+          1;
+        else more
+      "
+      >digit</span
+    >
+    <ng-template #more>digits</ng-template> to go
   </div>
   <label for="password">Password: </label>
-  <input type="password" ngModel #password="ngModel" name="password" pattern="^[A-Za-z]+$|^[0-9]+$" maxlength="6" required appPasswordLetters/><br>
-  <div *ngIf="password.errors?.required && password.touched">This field is mandatory</div>
-  <p *ngIf="password.dirty" [ngClass]="[password.errors?.pattern?'red':'green']">Password must contains either letters or numbers</p>
-  <p *ngIf="password.dirty" [ngClass]="[password.errors?.appPasswordLetters?'red':'green']">Password must contains either uppercase or lowercase</p>
-  <p *ngIf="password.dirty" [ngClass]="[password.errors?.maxLength?'red':'green']">Password must not be longer than 6 digits</p>
+  <input
+    type="password"
+    ngModel
+    #password="ngModel"
+    name="password"
+    pattern="^[A-Za-z]+$|^[0-9]+$"
+    maxlength="6"
+    required
+    appPasswordLetters
+  /><br />
+  <div *ngIf="password.errors?.required && password.touched">
+    This field is mandatory
+  </div>
+  <p
+    *ngIf="password.dirty"
+    [ngClass]="[password.errors?.pattern ? 'red' : 'green']"
+  >
+    Password must contains either letters or numbers
+  </p>
+  <p
+    *ngIf="password.dirty"
+    [ngClass]="[password.errors?.appPasswordLetters ? 'red' : 'green']"
+  >
+    Password must contains either uppercase or lowercase
+  </p>
+  <p
+    *ngIf="password.dirty"
+    [ngClass]="[password.errors?.maxLength ? 'red' : 'green']"
+  >
+    Password must not be longer than 6 digits
+  </p>
   <label for="name">Name: </label>
   <input
     type="text"
@@ -44,24 +80,33 @@
     required
     pattern="[A-Za-z]+"
     name="name"
-  /><br>
+  /><br />
   <div *ngIf="name.errors?.required && name.touched">
     This field is mandatory
   </div>
-  <div *ngIf="name.errors?.pattern">
-    Name may contain only letters
-  </div>
+  <div *ngIf="name.errors?.pattern">Name may contain only letters</div>
   <label for="surname">Surname: </label>
-  <input type="text" ngModel #surname="ngModel" name="surname" required
-  pattern="[A-Za-z]+"/><br>
+  <input
+    type="text"
+    ngModel
+    #surname="ngModel"
+    name="surname"
+    required
+    pattern="[A-Za-z]+"
+  /><br />
   <div *ngIf="surname.errors?.required && surname.touched">
     This field is mandatory
   </div>
-  <div *ngIf="surname.errors?.pattern">
-    Name may contain only letters
-  </div>
+  <div *ngIf="surname.errors?.pattern">Name may contain only letters</div>
   <label for="email">Email:</label>
-  <input type="email" ngModel #email="ngModel" name="email" required pattern="^[A-Za-z0-9]\w+@[a-z0-9.-]+\.[a-z]+$"/><br>
+  <input
+    type="email"
+    ngModel
+    #email="ngModel"
+    name="email"
+    required
+    pattern="^[A-Za-z0-9]\w+@[a-z0-9.-]+\.[a-z]+$"
+  /><br />
   <div *ngIf="email.errors?.required && email.touched">
     This field is mandatory
   </div>

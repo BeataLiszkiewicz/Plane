@@ -6,7 +6,12 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
-import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
+import {
+  MatDialogModule,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialog,
+} from '@angular/material/dialog';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -15,15 +20,17 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./create-user.component.scss'],
 })
 export class CreateUserComponent {
-  constructor(private readonly userService: UsersService,
-    private dialogRef2: MatDialog) {}
+  constructor(
+    private readonly userService: UsersService,
+    private dialogRef2: MatDialog
+  ) {}
 
-  haveUser(createUser: NgForm, submit: any) {
+  haveUser(createUser: NgForm) {
     this.userService.createUser(createUser.value);
-    this.dialogRef2.closeAll()
+    this.dialogRef2.closeAll();
   }
 
-  close(){
+  close() {
     this.dialogRef2.closeAll();
   }
 }

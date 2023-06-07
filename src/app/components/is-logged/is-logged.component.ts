@@ -11,6 +11,5 @@ export class IsLoggedComponent {
   constructor(private readonly UserService: UsersService) {}
   ngOnInit() {
     this.name = this.UserService.oneUser[0].name;
-    console.log(this.UserService.oneUser[0].name)
   }
 }

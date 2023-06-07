@@ -3,6 +3,8 @@ import { FlyChoiceDataService } from 'src/app/services/fly-choice-data.service';
 import { ExchangeRateService } from 'src/app/services/exchange-rate.service';
 import { DataFromCalendarService } from 'src/app/services/data-from-calendar.service';
 import { MatDialog } from '@angular/material/dialog';
+import { SpinnerService } from 'src/app/services/spinner.service';
+import { Calendar } from 'src/app/interfaces/calendar';
 
 @Component({
   selector: 'app-departure-calendar',
@@ -10,25 +12,28 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./departure-calendar.component.scss'],
 })
 export class DepartureCalendarComponent {
-  calendar: any = [];
+  calendar: Calendar[] = [];
   calendarMonth: number = 0;
-  container: any = [];
-  currencyRate: any = [1, 'PLN'];
+  container: Array<number> = [];
+  currencyRate: Array<any> = [1, 'PLN'];
   currentMonth: number = new Date().getMonth() + 1;
   currentYear: number = new Date().getFullYear();
+  public data: any;
   emptyDays: number = 0;
-  finalPrice:any;
-  lastDay: any;
-  price:any;
+  finalPrice: Array<any> = [];
+  lastDay: number = 0;
+  price: number = 0;
   storedCurrency: string | null = sessionStorage.getItem('currency');
   today: number = new Date().getDate();
+  waiting: boolean = false;
   week: any = ['Mon.', 'Tues.', 'Wed.', 'Thurs.', 'Fri.', 'Sat.', 'Sun.'];
 
   constructor(
     private flyChoiceService: FlyChoiceDataService,
     private exchangeService: ExchangeRateService,
     private dataServise: DataFromCalendarService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private SpinnerService: SpinnerService
   ) {}
   arrival: string = '';
   departure: string = '';
@@ -112,8 +117,7 @@ export class DepartureCalendarComponent {
         this.emptyDays += 1;
       }
     }
-    for (let j = 0; j < (this.emptyDays + (this.calendar[0].today - 1)); j++) {
-
+    for (let j = 0; j < this.emptyDays + (this.calendar[0].today - 1); j++) {
       this.calendar[0].days[j][1] = '';
     }
   }
@@ -129,10 +133,12 @@ export class DepartureCalendarComponent {
   // change currency
   changeCurrency(param: string) {
     if (param !== 'PLN') {
+      this.waiting = true;
       this.exchangeService.exchanegeRate(param).subscribe({
         next: (data: any) => {
           this.currencyRate[0] = data.rates[0].mid;
           this.currencyRate[1] = data.code;
+          this.waiting = false;
         },
         error: (err: any) => console.error(err),
       });
@@ -142,26 +148,31 @@ export class DepartureCalendarComponent {
     }
   }
 
+  load() {
+    this.SpinnerService.getData().subscribe((data: any) => {
+      this.data = data;
+    });
+  }
+
   choseDate(param: any) {
     if (param[1] === '') {
       alert('Sorry, chosen date falls in the past.');
     } else {
-      this.finalPrice=this.calendar[this.calendarMonth].days.filter((el:any)=>el[0]===param[0]);
+      this.finalPrice = this.calendar[this.calendarMonth].days.filter(
+        (el: any) => el[0] === param[0]
+      );
       this.dataServise.setData({
         departureDate: new Date(
           this.calendar[this.calendarMonth].year,
-          this.calendar[this.calendarMonth].month-1,
+          this.calendar[this.calendarMonth].month - 1,
           param[0]
         ),
-        price: Math.round(this.finalPrice[0][1]/this.currencyRate[0]),
-        currency: this.currencyRate[1]
-        
+        price: Math.round(this.finalPrice[0][1] / this.currencyRate[0]),
+        currency: this.currencyRate[1],
       });
-      
+
       sessionStorage.setItem('currency', this.currencyRate[1]);
-      
     }
     this.dialogRef.closeAll();
-    
   }
 }

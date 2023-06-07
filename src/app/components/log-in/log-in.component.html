@@ -2,30 +2,66 @@
   <div class="loginForm">
     <h3>Use your account:</h3>
     <form #logIn="ngForm" class="logIn">
-        <label for="login">Login:</label>
-        <input type="text" name="login" [(ngModel)]='login'>
-        <label for="password">Password:</label>
-        <input type="password" name="password" [(ngModel)]='password'>
-       <p *ngIf="incorrectLogin">Invalid login or password</p>
+      <label for="login">Login:</label>
+      <input type="text" name="login" [(ngModel)]="login" />
+      <label for="password">Password:</label>
+      <input type="password" name="password" [(ngModel)]="password" />
+      <p *ngIf="incorrectLogin">Invalid login or password</p>
     </form>
   </div>
   <div class="signIn">
-    <p>Have no account? Want to have access to fly statuses, history of transaction, member discounts? <span (click)="create()">Sign in.</span></p>
+    <p>
+      Have no account? Want to have access to fly statuses, history of
+      transaction, member discounts? <span (click)="create()">Sign in.</span>
+    </p>
   </div>
   <div class="withoutAccount" [hidden]="onlyLogin">
     <p>To continue without login in, plese fill in form below</p>
     <form #withoutAccount="ngForm" class="noAccount">
-        <label for="name">Name:</label>
-        <input type="text" name="name" ngModel #name="ngModel" minLength='1' pattern="[A-Za-z]+" required name="name">
-        <p *ngIf="name.errors?.pattern">Invalid characters</p>
-        <label for="surname">Surname:</label>
-        <input type="text" name="surname" ngModel #surname="ngModel" minLength='1' pattern="[A-Za-z]+" required name="surname">
-        <p *ngIf="surname.errors?.pattern">Invalid characters</p>
-        <label for="email">Email:</label>
-        <input type="email" name="email" ngModel #email="ngModel" name="email" pattern="^[A-Za-z0-9]\w+@[a-z0-9.-]+\.[a-z]+$" required>
-        <p *ngIf="email.errors?.pattern">Invalid characters</p>
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        name="name"
+        ngModel
+        #name="ngModel"
+        minLength="1"
+        pattern="[A-Za-z]+"
+        required
+        name="name"
+      />
+      <p *ngIf="name.errors?.pattern">Invalid characters</p>
+      <label for="surname">Surname:</label>
+      <input
+        type="text"
+        name="surname"
+        ngModel
+        #surname="ngModel"
+        minLength="1"
+        pattern="[A-Za-z]+"
+        required
+        name="surname"
+      />
+      <p *ngIf="surname.errors?.pattern">Invalid characters</p>
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        name="email"
+        ngModel
+        #email="ngModel"
+        name="email"
+        pattern="^[A-Za-z0-9]\w+@[a-z0-9.-]+\.[a-z]+$"
+        required
+      />
+      <p *ngIf="email.errors?.pattern">Invalid characters</p>
     </form>
   </div>
-  <button type="submit" (click)="continue([withoutAccount.value, withoutAccount.valid])">Continue</button>
-  <p *ngIf="incorrectdata">Form contains incorrect information or some information is missing</p>
+  <button
+    type="submit"
+    (click)="continue([withoutAccount.value, withoutAccount.valid])"
+  >
+    Continue
+  </button>
+  <p *ngIf="incorrectdata">
+    Form contains incorrect information or some information is missing
+  </p>
 </div>

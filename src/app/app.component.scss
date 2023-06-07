@@ -9,14 +9,14 @@
     grid-template-columns: 30% 1fr 20%;
     height: 6rem;
     width: 100%;
-    @media (orientation:landscape){
+    @media (orientation: landscape) {
       height: 3rem;
     }
 
     img {
       height: 5rem;
 
-      @media (orientation:landscape){
+      @media (orientation: landscape) {
         height: 4rem;
       }
     }

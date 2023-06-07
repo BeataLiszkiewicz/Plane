@@ -2,20 +2,17 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BarOnService {
-  
-  constructor() { }
+  constructor() {}
 
-  unhide = new BehaviorSubject<string>("false");
-  
+  unhide = new BehaviorSubject<string>('false');
 
-  setData(el:string){
-   this.unhide.next(el)
-   console.log('barOn from service', this.unhide)
+  setData(el: string) {
+    this.unhide.next(el);
   }
-  getData(){
-    return this.unhide.asObservable()
+  getData() {
+    return this.unhide.asObservable();
   }
 }

@@ -6,7 +6,7 @@ import { FirstPageComponent } from './components/first-page/first-page.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OpacityDirective } from './directives/opacity.directive';
 import { BarOnService } from './services/bar-on.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FlyChoiceComponent } from './components/fly-choice/fly-choice.component';
 import { DepartureCalendarComponent } from './components/departure-calendar/departure-calendar.component';
@@ -21,6 +21,9 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { UserExistDirective } from './directives/user-exist.directive';
 import { PasswordLettersDirective } from './directives/password-letters.directive';
 import { IsLoggedComponent } from './components/is-logged/is-logged.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ApiInterceptor } from './interceptors/api.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import { IsLoggedComponent } from './components/is-logged/is-logged.component';
     UserExistDirective,
     PasswordLettersDirective,
     IsLoggedComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,7 @@ import { IsLoggedComponent } from './components/is-logged/is-logged.component';
     AppRoutingModule,
     MatDialogModule,
     MatButtonToggleModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     BarOnService,
@@ -55,6 +60,11 @@ import { IsLoggedComponent } from './components/is-logged/is-logged.component';
       provide: MatDialogRef,
       useValue: {},
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent],
 })

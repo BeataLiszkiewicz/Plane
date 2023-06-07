@@ -1,55 +1,52 @@
 <button class="bookFlight" (click)="flyFly()">BOOK YOUR FLIGHT</button>
 <div class="container">
-    <div *ngIf="disappear === ''" class="lu main">
-      
-      <h2>Unique destinations</h2>
-      <div
-        [ngStyle]="{
-          background: 'url(' + globtrotter[0] + ') no-repeat center center/ cover'
-        }"
-        appOpacity
-      ></div>
-    </div>
-    <div *ngIf="disappear === ''" class="ru main">
-      <h2>Delicius meals</h2>
-      <div
-        class=""
-        [ngStyle]="{
-          background:
-            'url(' + globtrotter[2] + ') no-repeat center center / cover'
-        }"
-        appOpacity
-      ></div>
-    </div>
-    <div *ngIf="disappear === ''" class="ld main">
-      <h2>Experienced aircrew</h2>
-      <div
-        class=""
-        [ngStyle]="{
-          background:
-            'url(' + globtrotter[1] + ') no-repeat center center / cover'
-        }"
-        appOpacity
-      ></div>
-    </div>
-    <div *ngIf="disappear === ''" class="rd main">
-      <h2>Comfortable space</h2>
-      <div
-        class=""
-        [ngStyle]="{
-          background:
-            'url(' + globtrotter[3] + ') no-repeat center center / cover'
-        }"
-        appOpacity
-      ></div>
-    </div>
-    <div class="shadowContainer">
-      <div class="planeShadow">
-        <div class="mid main" (click)="flyFly()" [@justFly]="flyStart">
-          <p *ngIf="flyStart === ''">FLY WITH US</p>
-        </div>
+  <div *ngIf="disappear === ''" class="lu main">
+    <h2>Unique destinations</h2>
+    <div
+      [ngStyle]="{
+        background: 'url(' + globtrotter[0] + ') no-repeat center center/ cover'
+      }"
+      appOpacity
+    ></div>
+  </div>
+  <div *ngIf="disappear === ''" class="ru main">
+    <h2>Delicius meals</h2>
+    <div
+      class=""
+      [ngStyle]="{
+        background:
+          'url(' + globtrotter[2] + ') no-repeat center center / cover'
+      }"
+      appOpacity
+    ></div>
+  </div>
+  <div *ngIf="disappear === ''" class="ld main">
+    <h2>Experienced aircrew</h2>
+    <div
+      class=""
+      [ngStyle]="{
+        background:
+          'url(' + globtrotter[1] + ') no-repeat center center / cover'
+      }"
+      appOpacity
+    ></div>
+  </div>
+  <div *ngIf="disappear === ''" class="rd main">
+    <h2>Comfortable space</h2>
+    <div
+      class=""
+      [ngStyle]="{
+        background:
+          'url(' + globtrotter[3] + ') no-repeat center center / cover'
+      }"
+      appOpacity
+    ></div>
+  </div>
+  <div class="shadowContainer">
+    <div class="planeShadow">
+      <div class="mid main" (click)="flyFly()" [@justFly]="flyStart">
+        <p *ngIf="flyStart === ''">FLY WITH US</p>
       </div>
     </div>
-    
   </div>
-  
+</div>

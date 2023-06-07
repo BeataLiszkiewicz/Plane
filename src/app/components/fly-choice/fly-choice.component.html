@@ -1,30 +1,28 @@
-<div class="weather" *ngIf="departure.value !== ''||arrival.value!==''" >
+<div class="weather" *ngIf="departure.value !== '' || arrival.value !== ''">
   <div class="option">
-    <select name="place" #place [(ngModel)]="weatherPlace" [style.boxShadow]="weatherPlace===''?'10px 10px 20px #00adfb':'none'">
-      <option *ngIf="departure.value !== ''" value="{{ departure.value }}">{{ departure.value }}</option>
-      <option *ngIf="arrival.value !== ''" value="{{ arrival.value }}">{{ arrival.value }}</option>
+    <select
+      name="place"
+      #place
+      [(ngModel)]="weatherPlace"
+      [style.boxShadow]="
+        weatherPlace === '' ? '10px 10px 20px #00adfb' : 'none'
+      "
+    >
+      <option *ngIf="departure.value !== ''" value="{{ departure.value }}">
+        {{ departure.value }}
+      </option>
+      <option *ngIf="arrival.value !== ''" value="{{ arrival.value }}">
+        {{ arrival.value }}
+      </option>
     </select>
     <label for="place"> weather forecast</label>
   </div>
-  
+
   <div class="weatherForecast">
-    <ng-container *ngIf="weatherPlace===departure.value; else arrivalPlace">
+    <ng-container *ngIf="weatherPlace === departure.value; else arrivalPlace">
       <ng-container *ngFor="let day of dailyWeatherForecast">
         <div class="weatherDay">
-          <p class="date">{{day.date|date:'dd.MM'}}</p>
-          <img
-            src="{{ 'assets/pictures/' + day.weather + '.png' }}"
-            alt="{{ day.weather }}"
-          />
-          <p class="temperature">{{ day.temp }}<span>&#8451;</span></p>
-        </div>
-      </ng-container>
-   </ng-container>
-    <ng-template #arrivalPlace>
-      <ng-container *ngIf="weatherPlace===arrival.value">
-      <ng-container *ngFor="let day of dailyWeatherForecastArrival">
-        <div class="weatherDay">
-          <p class="date">{{day.date|date:'dd.MM'}}</p>
+          <p class="date">{{ day.date | date : "dd.MM" }}</p>
           <img
             src="{{ 'assets/pictures/' + day.weather + '.png' }}"
             alt="{{ day.weather }}"
@@ -33,14 +31,25 @@
         </div>
       </ng-container>
     </ng-container>
+    <ng-template #arrivalPlace>
+      <ng-container *ngIf="weatherPlace === arrival.value">
+        <ng-container *ngFor="let day of dailyWeatherForecastArrival">
+          <div class="weatherDay">
+            <p class="date">{{ day.date | date : "dd.MM" }}</p>
+            <img
+              src="{{ 'assets/pictures/' + day.weather + '.png' }}"
+              alt="{{ day.weather }}"
+            />
+            <p class="temperature">{{ day.temp }}<span>&#8451;</span></p>
+          </div>
+        </ng-container>
+      </ng-container>
     </ng-template>
-    
-    
   </div>
 </div>
 
 <div class="container">
-  <form #flyForm="ngForm" >
+  <form #flyForm="ngForm">
     <div class="departure">
       <label for="departure">Departure airport</label>
       <select
@@ -79,6 +88,7 @@
         <input
           required
           type="date"
+          #date
           (click)="openCalendar()"
           [ngModel]="fromCalendar.departureDate | date : 'yyyy-MM-dd'"
           [ngModelOptions]="{ standalone: true }"

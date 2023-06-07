@@ -19,6 +19,8 @@ import coordinates from './../../../assets/database/cityCoordinates.json';
 import { LogInComponent } from '../log-in/log-in.component';
 import { BehaviorSubject, Subscription, fromEvent } from 'rxjs';
 import { UsersService } from 'src/app/services/users.service';
+import { AllAirports } from 'src/app/interfaces/all-airports';
+
 
 @Component({
   selector: 'app-fly-choice',
@@ -27,8 +29,8 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class FlyChoiceComponent {
   adults: number = 0;
-  airportsList:Array<string>=[];
-  allAirports: any;
+  airportsList: Array<string> = [];
+  allAirports: AllAirports[] = [];
   allDepartureAirports: number = 0;
   arrival: string = '';
   availableArrivals: Array<string> = [];
@@ -43,15 +45,11 @@ export class FlyChoiceComponent {
   fromCalendar: any;
   infants: number = 0;
   oneAirport: any;
-  passengersSelection: any;
   passengersNumber: number = 0;
   someAirports: Array<string> = [];
   weatherArrivalSubscription: Subscription | undefined;
-  weatherForecast: any;
-  weatherForecastArrival: any;
-  weatherPlace:string="";
-  weatherPlaceChoice:Array<string>=[];
- 
+  weatherPlace: string = '';
+  weatherPlaceChoice: Array<string> = [];
 
   constructor(
     private readonly form: FormBuilder,
@@ -61,7 +59,7 @@ export class FlyChoiceComponent {
     private dialogRef: MatDialog,
     private dataService: DataFromCalendarService,
     private weatherService: WeatherApiService,
-    private userService:UsersService
+    private userService: UsersService
   ) {}
 
   @ViewChild('place', { static: true })
@@ -96,20 +94,16 @@ export class FlyChoiceComponent {
       },
       error: (err: any) => console.log(err),
     });
-    this.airportsList=[...this.availableArrivals,...this.availableDepartures]
-    
-   
+    this.airportsList = [
+      ...this.availableArrivals,
+      ...this.availableDepartures,
+    ];
   }
 
-ngAfterViewInit(){
-  
-  
-}
+  ngAfterViewInit() {}
   sort(param: Array<string>) {
     param.sort();
   }
-
- 
 
   arrivalAirportsOpen(param: string) {
     if (param !== '' && this.departure !== param) {
@@ -149,9 +143,7 @@ ngAfterViewInit(){
         },
         error: (err: any) => console.error(err),
       });
-      this.choiceOfWeatherPlace()
-
-
+      this.choiceOfWeatherPlace();
     }
   }
 
@@ -207,8 +199,6 @@ ngAfterViewInit(){
         error: (err: any) => console.error(err),
       });
       this.choiceOfWeatherPlace();
-      
-      
     }
   }
 
@@ -254,9 +244,9 @@ ngAfterViewInit(){
   }
 
   buy() {
-    if (this.userService.oneUser.length>0){
+    if (this.userService.oneUser.length > 0) {
       this.router.navigate(['/summary']);
-    }else{
+    } else {
       const logIn = this.dialogRef.open(LogInComponent, {
         disableClose: false,
         hasBackdrop: true,
@@ -271,16 +261,12 @@ ngAfterViewInit(){
         },
       });
     }
-    
   }
 
-  choiceOfWeatherPlace(){
-    this.weatherPlaceChoice=this.airportsList.filter((el:string)=>el===this.departure||el===this.arrival)
-    this.weatherPlaceChoice.unshift('Weather forecast')
-    
+  choiceOfWeatherPlace() {
+    this.weatherPlaceChoice = this.airportsList.filter(
+      (el: string) => el === this.departure || el === this.arrival
+    );
+    this.weatherPlaceChoice.unshift('Weather forecast');
   }
-  
-
-  
- 
 }

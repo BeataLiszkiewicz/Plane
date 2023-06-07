@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataFromCalendarService {
-  dataFromCalendar=new BehaviorSubject<string>("")
+  dataFromCalendar = new BehaviorSubject<string>('');
 
-  constructor() { }
+  constructor() {}
 
-  getData(){
-    return this.dataFromCalendar.asObservable()
+  getData() {
+    return this.dataFromCalendar.asObservable();
   }
 
-  setData(el:any){
-    this.dataFromCalendar.next(el)
+  setData(el: any) {
+    this.dataFromCalendar.next(el);
   }
 }

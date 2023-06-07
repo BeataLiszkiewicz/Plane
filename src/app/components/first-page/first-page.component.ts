@@ -31,17 +31,19 @@ import { Router } from '@angular/router';
   ],
 })
 export class FirstPageComponent {
-  disappear:string=""
+  disappear: string = '';
   flyStart: string = '';
   globtrotter: Array<string> = [
-    "assets/pictures/travelPlan.jpg",
+    'assets/pictures/travelPlan.jpg',
     'assets/pictures/airCrew.jpg',
     'assets/pictures/goodFood.jpg',
     'assets/pictures/inside.jpg',
   ];
-  
-  constructor(private readonly barService:BarOnService,
-    private router:Router){}
+
+  constructor(
+    private readonly barService: BarOnService,
+    private router: Router
+  ) {}
 
   flyFly() {
     this.flyStart = 'start';
@@ -49,11 +51,11 @@ export class FirstPageComponent {
       this.flyStart = 'fly';
     }, 800);
     setTimeout(() => {
-      this.disappear="disappear"
+      this.disappear = 'disappear';
     }, 1500);
     setTimeout(() => {
-      this.barService.setData("showLogin"),
-      this.router.navigate(['/flyChoice'])
+      this.barService.setData('showLogin'),
+        this.router.navigate(['/flyChoice']);
     }, 2200);
   }
 }

@@ -10,6 +10,8 @@ import { DataFromCalendarService } from 'src/app/services/data-from-calendar.ser
 import { FlyChoiceDataService } from 'src/app/services/fly-choice-data.service';
 import data from './../../../assets/database/flyDistance.json';
 import { UsersService } from 'src/app/services/users.service';
+import { CalendarData } from 'src/app/interfaces/calendar-data';
+
 
 @Component({
   selector: 'app-summary',
@@ -24,7 +26,7 @@ export class SummaryComponent {
   departure: string = '';
   flyDistanceInfo: any = '';
   distance: string = '';
-  flyDetails: any;
+  flyDetails: CalendarData[]=[];
   getSeat: boolean = true;
   id: string = '0';
   passengers: any;
@@ -155,7 +157,7 @@ export class SummaryComponent {
         this.summary.passenger[param[1]].luggage = this.extraPlusLuggage;
         break;
     }
-    
+
     this.calculateFinalCost();
   }
 
@@ -192,7 +194,6 @@ export class SummaryComponent {
   }
   unsubscribe() {
     this.tickets.nativeElement.scrollIntoView();
-    console.log('click')
     if (!this.getSeat) {
       setTimeout(() => {
         {

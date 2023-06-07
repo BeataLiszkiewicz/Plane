@@ -1,6 +1,8 @@
 <div class="calendar">
   <div class="header">
-    <div class="direction"><p>{{ departure }} to {{ arrival }}</p></div>
+    <div class="direction">
+      <p>{{ departure }} to {{ arrival }}</p>
+    </div>
     <div class="currency">
       <button
         [ngClass]="[currencyRate[1] === 'PLN' ? 'clicked' : 'clear']"
@@ -22,6 +24,7 @@
       </button>
     </div>
   </div>
+  <app-spinner></app-spinner>
   <div class="calendarByDays">
     <div class="monthHead">
       <div></div>
@@ -32,22 +35,33 @@
       >
         <<
       </button>
-      <div class="month"><p>{{ calendar[calendarMonth].month | monthName }}</p></div>
-      <button (click)="changeMonth(1)" [ngClass]="[calendarMonth === 2 ? 'disabled' : 'valid']" [disabled]="calendarMonth === 2">
+      <div class="month">
+        <p>{{ calendar[calendarMonth].month | monthName }}</p>
+      </div>
+      <button
+        (click)="changeMonth(1)"
+        [ngClass]="[calendarMonth === 2 ? 'disabled' : 'valid']"
+        [disabled]="calendarMonth === 2"
+      >
         >>
       </button>
-      <div class="year"><p>{{ calendar[calendarMonth].year }}</p></div>
+      <div class="year">
+        <p>{{ calendar[calendarMonth].year }}</p>
+      </div>
     </div>
     <div class="weekDays">
       <div *ngFor="let day of week">{{ day }}</div>
     </div>
     <div class="days">
-      <div *ngFor="let day of calendar[calendarMonth].days" (click)="choseDate(day)" >
-        <span>{{ day[0] }}</span><br />
-        {{ day[1] | calendarCurrency : currencyRate[0] }}<br>
-        <span *ngIf="day[1]>0">{{currencyRate[1]}}</span>
+      <div
+        *ngFor="let day of calendar[calendarMonth].days"
+        (click)="choseDate(day)"
+      >
+        <span>{{ day[0] }}</span
+        ><br />
+        {{ day[1] | calendarCurrency : currencyRate[0] }}<br />
+        <span *ngIf="day[1] > 0">{{ currencyRate[1] }}</span>
       </div>
     </div>
   </div>
 </div>
-

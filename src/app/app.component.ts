@@ -20,12 +20,12 @@ export class AppComponent {
   constructor(
     private readonly fb: FormBuilder,
     private readonly barService: BarOnService,
-    private readonly router:Router,
-    private UserService:UsersService,
-    private dialogRef: MatDialog,
+    private readonly router: Router,
+    private UserService: UsersService,
+    private dialogRef: MatDialog
   ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.barService.getData().subscribe({
       next: (el: string) => {
         this.visible = el;
@@ -33,46 +33,37 @@ export class AppComponent {
       error: (err: any) => console.log(err),
     });
   }
-   
 
-  
-  
-openLogIn(){
-
-  if (this.UserService.oneUser.length>0){
-    this.dialogRef.open(IsLoggedComponent, {
-      disableClose: false,
-      hasBackdrop: true,
-      backdropClass: '',
-      minWidth: '80%',
-      height: '',
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
-      },
-  
-  })
-  }else{
-    this.UserService.changeOnlyLogIn(true);
-    this.dialogRef.open(LogInComponent, {
-      disableClose: false,
-      hasBackdrop: true,
-      backdropClass: '',
-      minWidth: '80%',
-      height: '',
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
-      },
-  
-  })
+  openLogIn() {
+    if (this.UserService.oneUser.length > 0) {
+      this.dialogRef.open(IsLoggedComponent, {
+        disableClose: false,
+        hasBackdrop: true,
+        backdropClass: '',
+        minWidth: '80%',
+        height: '',
+        position: {
+          top: '',
+          bottom: '',
+          left: '',
+          right: '',
+        },
+      });
+    } else {
+      this.UserService.changeOnlyLogIn(true);
+      this.dialogRef.open(LogInComponent, {
+        disableClose: false,
+        hasBackdrop: true,
+        backdropClass: '',
+        minWidth: '80%',
+        height: '',
+        position: {
+          top: '',
+          bottom: '',
+          left: '',
+          right: '',
+        },
+      });
+    }
   }
-  
-  
-
-}
 }
