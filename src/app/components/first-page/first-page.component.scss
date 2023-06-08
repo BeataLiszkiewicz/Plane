@@ -4,15 +4,26 @@
   height: 100%;
   width: 100%;
   border-radius: 5%;
+
+  
+  
 }
 .bookFlight {
-  position: relative;
-  top: -5rem;
-  left: 60%;
+  position: absolute;
+  top: 1rem;
+  margin-left:60vw;
+  width: 30vw;
   height: 4rem;
   background-color: #2f43bb;
   color: white;
   border-radius: 5%;
+
+  @media(min-width:768px){
+    font-size: 1.5rem;
+    width:35vw
+  }
+  
+  
 }
 .container {
   width: 80vw;
@@ -23,6 +34,11 @@
   margin: 0 auto;
   box-sizing: border-box;
   text-align: center;
+
+  @media (max-width:300px){
+    grid-template-columns:30% 30% 30%;
+    grid-template-rows: 45% 10% 45% 10%;
+  }
 
   @media (orientation: landscape) {
     margin-left: 10vmax;
@@ -44,6 +60,10 @@
     grid-column: 1;
     grid-row: 1;
     display: grid;
+
+    @media (max-width:300px){
+     width: 90%;
+    }
     @media (orientation: landscape) {
       grid-column: 1;
     }
@@ -57,6 +77,9 @@
     grid-column: 3;
     grid-row: 1;
     display: grid;
+    @media (max-width:300px){
+      width: 90%;
+     }
     @media (orientation: landscape) {
       grid-column: 3;
     }
@@ -74,6 +97,9 @@
     grid-column: 1;
     grid-row: 3;
     display: grid;
+    @media (max-width:300px){
+      width: 90%;
+     }
     @media (orientation: landscape) {
       grid-column: 5;
       grid-row: 1;
@@ -91,6 +117,9 @@
     grid-column: 3;
     grid-row: 3;
     display: grid;
+    @media (max-width:300px){
+      width: 90%;
+     }
     @media (orientation: landscape) {
       grid-column: 7;
       grid-row: 1;

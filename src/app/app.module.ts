@@ -24,6 +24,8 @@ import { IsLoggedComponent } from './components/is-logged/is-logged.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ApiInterceptor } from './interceptors/api.interceptor';
+import { ButtonDirective } from './directives/button.directive';
+import { ButtonClickDirective } from './directives/button-click.directive';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
     PasswordLettersDirective,
     IsLoggedComponent,
     SpinnerComponent,
+    ButtonDirective,
+    ButtonClickDirective,
   ],
   imports: [
     BrowserModule,

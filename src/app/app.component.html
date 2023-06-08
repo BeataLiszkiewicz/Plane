@@ -3,12 +3,15 @@
     <div class="logo">
       <img src="../assets/pictures/logo.png" alt="Company logo" />
     </div>
-    <div class=""></div>
-    <div class="login" [hidden]="visible !== 'showLogin'" (click)="openLogIn()">
-      <div class="logoIcon"></div>
+    <div class="time" ><br>{{today|date:'dd.MM.yyyy'}}<br>
+      {{today|date:'HH:mm:ss'}}
+    </div>
+    <div class="login"  (click)="openLogIn()">
+      <div class="logoIcon" [hidden]="visible !== 'showLogin'"></div>
     </div>
   </div>
-  <div class="loginTable"></div>
+  
 
   <router-outlet></router-outlet>
+  
 </div>

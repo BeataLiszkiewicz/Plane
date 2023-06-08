@@ -1,185 +1,205 @@
-.weather {
-  position: absolute;
-  top: 7rem;
-  left: 0;
-  margin: 0;
-  padding: 0;
+.wholeFlyChoice {
   width: 100%;
+  background-image: url("../../../assets/pictures/sky.jpg");
+  height: calc(100vmax - 6rem);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3rem;
-  color: #00adfb;
-  font-weight: bold;
+  margin: none;
+  position: absolute;
+  top:6rem;
 
-  p {
-    font-size: 0.9rem;
+
+
+  .weather {
+    position: absolute;
+    
+    left: 0;
     margin: 0;
     padding: 0;
-  }
-
-  .option {
+    width: 100%;
     display: flex;
-    gap: 1rem;
-    width: 95%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: #00adfb;
+    font-weight: bold;
 
-    label {
-      font-size: 1.3rem;
-      color: #00adfb;
-      font-weight: bold;
-      font-family: Tahoma, sans-serif;
+    p {
+      font-size: 0.9rem;
+      margin: 0;
+      padding: 0;
     }
 
-    select {
-      display: inline;
-      border: none;
-      border-radius: 5px;
-      height: 1.3rem;
-      // min-width: 30%;
-      border: none;
-      font-size: 1.3rem;
-      color: #00adfb;
-      font-weight: bold;
+    .option {
+      display: flex;
+      gap: 1rem;
+      width: 95%;
+      background-color: inherit;
+      margin-bottom: 0.5rem;
 
-      option {
-        border: none;
+      label {
         font-size: 1.3rem;
         color: #00adfb;
         font-weight: bold;
         font-family: Tahoma, sans-serif;
+        background-color: white;
+      }
+
+      select {
+        display: inline;
+        border: none;
+        border-radius: 5px;
+        min-height: 25px;
+        font-size: 1.3rem;
+        color: #00adfb;
+        background-color: white;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+
+        option {
+          border: none;
+          font-size: 1.3rem;
+          color: #00adfb;
+          font-weight: bold;
+          font-family: Tahoma, sans-serif;
+        }
       }
     }
-  }
 
-  @media (orientation: landscape) {
-    top: 75%;
-    left: 20vmin;
-    width: 80vmin;
-    z-index: 99;
-    font-size: 1.1rem;
-  }
+    @media (orientation: landscape) {
+      top: 75%;
+      left: 20vmin;
+      width: 80vmin;
+      z-index: 99;
+      font-size: 1.1rem;
+    }
 
-  .weatherForecast {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    width: 95%;
-
-    .weatherDay {
-      padding-top: 0.5rem;
-      width: 18%;
-      aspect-ratio: 1;
+    .weatherForecast {
       display: flex;
-      flex-direction: column;
+      gap: 0.5rem;
       justify-content: center;
-      box-shadow: 1px 1px 3px #00adfb;
-      border-radius: 5%;
+      width: 95%;
 
-      @media (orientation: landscape) {
-        height: 15vmin;
-      }
-
-      p {
-        margin: 0;
-        padding: 0;
-        font-size: 1rem;
-        font-weight: lighter;
-        text-align: center;
-      }
-
-      img {
-        width: 90%;
-        height: 80%;
+      .weatherDay {
+        padding-top: 0.5rem;
+        width: 18%;
+        aspect-ratio: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 1px 1px 3px #00adfb;
+        border-radius: 5%;
 
         @media (orientation: landscape) {
-          height: 60%;
+          height: 15vmin;
+        }
+
+        p {
+          margin: 0;
+          padding: 0;
+          font-size: 1rem;
+          font-weight: lighter;
+          text-align: center;
+        }
+
+        img {
+          width: 90%;
+          height: 80%;
+
+          @media (orientation: landscape) {
+            height: 60%;
+          }
         }
       }
     }
   }
-}
-.container {
-  width: 100vw;
-  height: 70vh;
-  padding: 0;
-  box-sizing: border-box;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background-image: url("../../../assets/pictures/sky.jpg");
-
-  @media (orientation: landscape) {
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 80vmin;
-
-    @media (min-height: 720px) {
-      height: 80%;
-    }
-  }
-
-  form {
+  .container {
+    height: 65vh;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
     display: flex;
-    justify-content: space-between;
-    align-content: space-around;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    border-radius: 5%;
-    position: absolute;
-    top: 0;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 25%;
 
     @media (orientation: landscape) {
-      width: 80%;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+      background-position: left;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 80vmin;
+
+      @media (min-height: 720px) {
+        height: 80%;
+      }
     }
 
-    div {
-      width: 100%;
+    form {
       display: flex;
-      flex-direction: column;
-      font-size: 1.5rem;
-      line-height: 2rem;
-
-      label {
-        height: 2rem;
-        text-align: center;
-        font-size: 1rem;
-        border-left: 3px solid white;
-        border-right: 3px solid white;
-        border-top: 3px solid white;
-      }
-
-      select,
-      input {
-        height: 2.5rem;
-        border: none;
-        background-color: inherit;
-        outline: none;
-        text-align: center;
-        font-size: 1.5rem;
-        line-height: 2rem;
-        border-bottom: 3px solid white;
-        border-left: 3px solid white;
-        border-right: 3px solid white;
-      }
-    }
-    .submit {
-      margin-left: 1%;
-      width: 98%;
-      height: 3rem;
-      background-color: #00abfb8b;
-      box-shadow: 10px 10px 20px #00adfb;
+      justify-content: space-between;
+      align-content: space-around;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-radius: 5%;
+      position: absolute;
+      top: 0;
 
       @media (orientation: landscape) {
-        margin-left: 50%;
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+      }
+
+      div {
+        width: 95%;
+        margin-left: 2.5%;
+        display: flex;
+        flex-direction: column;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        border-radius: 3px;
+
+        label {
+          height: 2rem;
+         
+          text-align: center;
+          font-size: 1rem;
+          border-left: 3px solid white;
+          border-right: 3px solid white;
+          border-top: 3px solid white;
+          background-color: #b5cae165;
+          border-radius: 10px 10px 0 0;
+        }
+
+        select,
+        input {
+          height: 2.5rem;
+          
+          border: none;
+          background-color: #b5cae165;
+          outline: none;
+          text-align: center;
+          font-size: 1.5rem;
+          line-height: 2rem;
+          border-bottom: 3px solid white;
+          border-left: 3px solid white;
+          border-right: 3px solid white;
+          border-radius: 0 0 10px 10px;
+        }
+      }
+      .submit {
+        margin-left: 1%;
+        width: 98%;
+        height: 3rem;
+        background-color: #00abfb8b;
+        box-shadow: 10px 10px 20px #00adfb;
+
+        @media (orientation: landscape) {
+          margin-left: 50%;
+        }
       }
     }
   }

@@ -45,6 +45,10 @@ export class FirstPageComponent {
     private router: Router
   ) {}
 
+  ngOnInit(){
+    this.barService.setData('')
+  }
+
   flyFly() {
     this.flyStart = 'start';
     setTimeout(() => {

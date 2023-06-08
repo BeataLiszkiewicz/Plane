@@ -14,7 +14,7 @@ import { IsLoggedComponent } from './components/is-logged/is-logged.component';
 })
 export class AppComponent {
   title = 'TicketsApp';
-
+  today:Date=new Date();
   visible: string = '';
 
   constructor(
@@ -32,6 +32,10 @@ export class AppComponent {
       },
       error: (err: any) => console.log(err),
     });
+
+    setInterval(()=>{this.today=new Date()}, 1000)
+
+
   }
 
   openLogIn() {
@@ -40,7 +44,7 @@ export class AppComponent {
         disableClose: false,
         hasBackdrop: true,
         backdropClass: '',
-        minWidth: '80%',
+        width: '90%',
         height: '',
         position: {
           top: '',
@@ -55,7 +59,7 @@ export class AppComponent {
         disableClose: false,
         hasBackdrop: true,
         backdropClass: '',
-        minWidth: '80%',
+        width: '90%',
         height: '',
         position: {
           top: '',

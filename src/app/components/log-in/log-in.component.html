@@ -29,7 +29,7 @@
         required
         name="name"
       />
-      <p *ngIf="name.errors?.pattern">Invalid characters</p>
+      <p *ngIf="name.errors?.pattern">Invalid characters. Only letters are allowed</p>
       <label for="surname">Surname:</label>
       <input
         type="text"
@@ -41,7 +41,7 @@
         required
         name="surname"
       />
-      <p *ngIf="surname.errors?.pattern">Invalid characters</p>
+      <p *ngIf="surname.errors?.pattern">Invalid characters. Only letters are allowed</p>
       <label for="email">Email:</label>
       <input
         type="email"

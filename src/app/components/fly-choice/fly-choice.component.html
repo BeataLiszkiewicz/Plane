@@ -1,39 +1,26 @@
-<div class="weather" *ngIf="departure.value !== '' || arrival.value !== ''">
-  <div class="option">
-    <select
-      name="place"
-      #place
-      [(ngModel)]="weatherPlace"
-      [style.boxShadow]="
-        weatherPlace === '' ? '10px 10px 20px #00adfb' : 'none'
-      "
-    >
-      <option *ngIf="departure.value !== ''" value="{{ departure.value }}">
-        {{ departure.value }}
-      </option>
-      <option *ngIf="arrival.value !== ''" value="{{ arrival.value }}">
-        {{ arrival.value }}
-      </option>
-    </select>
-    <label for="place"> weather forecast</label>
-  </div>
-
-  <div class="weatherForecast">
-    <ng-container *ngIf="weatherPlace === departure.value; else arrivalPlace">
-      <ng-container *ngFor="let day of dailyWeatherForecast">
-        <div class="weatherDay">
-          <p class="date">{{ day.date | date : "dd.MM" }}</p>
-          <img
-            src="{{ 'assets/pictures/' + day.weather + '.png' }}"
-            alt="{{ day.weather }}"
-          />
-          <p class="temperature">{{ day.temp }}<span>&#8451;</span></p>
-        </div>
-      </ng-container>
-    </ng-container>
-    <ng-template #arrivalPlace>
-      <ng-container *ngIf="weatherPlace === arrival.value">
-        <ng-container *ngFor="let day of dailyWeatherForecastArrival">
+<div class="wholeFlyChoice">
+  <div class="weather" *ngIf="departure.value !== '' || arrival.value !== ''">
+    <div class="option">
+      <select
+        name="place"
+        #place
+        [(ngModel)]="weatherPlace"
+        [style.boxShadow]="
+          weatherPlace === '' ? '10px 10px 20px #00adfb' : 'none'
+        "
+      >
+        <option *ngIf="departure.value !== ''" value="{{ departure.value }}">
+          {{ departure.value }}
+        </option>
+        <option *ngIf="arrival.value !== ''" value="{{ arrival.value }}">
+          {{ arrival.value }}
+        </option>
+      </select>
+    </div>
+    <app-spinner></app-spinner>
+    <div class="weatherForecast">
+      <ng-container *ngIf="weatherPlace === departure.value; else arrivalPlace">
+        <ng-container *ngFor="let day of dailyWeatherForecast">
           <div class="weatherDay">
             <p class="date">{{ day.date | date : "dd.MM" }}</p>
             <img
@@ -44,80 +31,96 @@
           </div>
         </ng-container>
       </ng-container>
-    </ng-template>
+      <ng-template #arrivalPlace>
+        <ng-container *ngIf="weatherPlace === arrival.value">
+          <ng-container *ngFor="let day of dailyWeatherForecastArrival">
+            <div class="weatherDay">
+              <p class="date">{{ day.date | date : "dd.MM" }}</p>
+              <img
+                src="{{ 'assets/pictures/' + day.weather + '.png' }}"
+                alt="{{ day.weather }}"
+              />
+              <p class="temperature">{{ day.temp }}<span>&#8451;</span></p>
+            </div>
+          </ng-container>
+        </ng-container>
+      </ng-template>
+    </div>
   </div>
-</div>
-
-<div class="container">
-  <form #flyForm="ngForm">
-    <div class="departure">
-      <label for="departure">Departure airport</label>
-      <select
-        name="departure"
-        ngModel
-        #departure="ngModel"
-        (click)="arrivalAirportsOpen(departure.value)"
-        [disabled]="disable === true"
-        required
-      >
-        <option style="display: none"></option>
-        <option *ngFor="let fly of availableDepartures" [value]="fly">
-          {{ fly }}
-        </option>
-      </select>
-    </div>
-    <div class="arrival">
-      <label for="arrival">Arrival airport</label>
-      <select
-        name="arrival"
-        ngModel
-        #arrival="ngModel"
-        required
-        (change)="departureAirports(arrival.value)"
-        [disabled]="disable === true"
-      >
-        <option style="display: none"></option>
-        <option *ngFor="let fly of availableArrivals" [value]="fly">
-          {{ fly }}
-        </option>
-      </select>
-    </div>
-    <div class="calendar">
-      <ng-container *ngIf="departure.value !== '' && arrival.value !== ''">
-        <label for="departureDay">Departure day:</label>
-        <input
+  
+  <div class="container">
+    <form #flyForm="ngForm">
+      <div class="departure">
+        <label for="departure">Departure airport</label>
+        <select
+          name="departure"
+          ngModel
+          #departure="ngModel"
+          (change)="arrivalAirportsOpen(departure.value)"
+          [disabled]="disable === true"
           required
-          type="date"
-          #date
-          (click)="openCalendar()"
-          [ngModel]="fromCalendar.departureDate | date : 'yyyy-MM-dd'"
-          [ngModelOptions]="{ standalone: true }"
-        />
-      </ng-container>
-    </div>
-    <div class="passengers">
-      <ng-container *ngIf="departure.value !== '' && arrival.value !== ''">
-        <label for="passenger">Number of passengers:</label>
-        <input
+        >
+          <option style="display: none"></option>
+          <option *ngFor="let fly of availableDepartures" [value]="fly">
+            {{ fly }}
+          </option>
+        </select>
+      </div>
+      <div class="arrival">
+        <label for="arrival">Arrival airport</label>
+        <select
+          name="arrival"
+          ngModel
+          #arrival="ngModel"
           required
-          (click)="openPassengerChoice()"
-          [ngModel]="passengersNumber"
-          [ngModelOptions]="{ standalone: true }"
-        />
-      </ng-container>
-    </div>
-    <button
-      type="submit"
-      class="submit"
-      *ngIf="
-        departure.value !== '' &&
-        arrival.value !== '' &&
-        fromCalendar.departureDate !== undefined &&
-        passengersNumber > 0
-      "
-      (click)="buy()"
-    >
-      BOOK YOUR FLIGHT
-    </button>
-  </form>
+          (change)="departureAirports(arrival.value)"
+          [disabled]="disable === true"
+        >
+          <option style="display: none"></option>
+          <option *ngFor="let fly of availableArrivals" [value]="fly">
+            {{ fly }}
+          </option>
+        </select>
+      </div>
+      <div class="calendar">
+        <ng-container *ngIf="departure.value !== '' && arrival.value !== ''">
+          <label for="departureDay">Departure day:</label>
+          <input
+            required
+            type="date"
+            #date
+            (click)="openCalendar()"
+            [ngModel]="fromCalendar.departureDate | date : 'yyyy-MM-dd'"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </ng-container>
+      </div>
+      <div class="passengers">
+        <ng-container *ngIf="departure.value !== '' && arrival.value !== ''">
+          <label for="passenger">Number of passengers:</label>
+          <input
+            required
+            (click)="openPassengerChoice()"
+            [ngModel]="passengersNumber"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </ng-container>
+      </div>
+      <button
+      appButtonClick
+        type="submit"
+        class="submit"
+        *ngIf="
+          departure.value !== '' &&
+          arrival.value !== '' &&
+          fromCalendar.departureDate !== undefined &&
+          passengersNumber > 0
+        "
+        (click)="buy()"
+      >
+        BOOK YOUR FLIGHT
+      </button>
+    </form>
+  </div>
+  
 </div>

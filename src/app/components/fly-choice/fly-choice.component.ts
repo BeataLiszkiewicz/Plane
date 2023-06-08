@@ -20,7 +20,7 @@ import { LogInComponent } from '../log-in/log-in.component';
 import { BehaviorSubject, Subscription, fromEvent } from 'rxjs';
 import { UsersService } from 'src/app/services/users.service';
 import { AllAirports } from 'src/app/interfaces/all-airports';
-
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-fly-choice',
@@ -40,6 +40,7 @@ export class FlyChoiceComponent {
   cityArrival: any;
   dailyWeatherForecast: any = [];
   dailyWeatherForecastArrival: any = [];
+  public data: any;
   departure: string = '';
   disable = false;
   fromCalendar: any;
@@ -59,7 +60,8 @@ export class FlyChoiceComponent {
     private dialogRef: MatDialog,
     private dataService: DataFromCalendarService,
     private weatherService: WeatherApiService,
-    private userService: UsersService
+    private userService: UsersService, 
+    private spinnerService:SpinnerService
   ) {}
 
   @ViewChild('place', { static: true })
@@ -68,6 +70,7 @@ export class FlyChoiceComponent {
   ngOnInit() {
     this.barOnServise.setData('showLogin');
     this.allAirports = data;
+    
     for (let i = 0; i < this.allAirports.length; i++) {
       this.availableDepartures.push(this.allAirports[i].departureAirport);
 
@@ -105,7 +108,14 @@ export class FlyChoiceComponent {
     param.sort();
   }
 
+  load() {
+    this.spinnerService.getData().subscribe((data: any) => {
+      this.data = data;
+    });
+  }
+
   arrivalAirportsOpen(param: string) {
+  
     if (param !== '' && this.departure !== param) {
       this.dailyWeatherForecast = [];
       this.oneAirport = this.allAirports.find(
@@ -144,7 +154,13 @@ export class FlyChoiceComponent {
         error: (err: any) => console.error(err),
       });
       this.choiceOfWeatherPlace();
+      if (this.arrival===''||this.weatherPlace!==this.arrival){
+        this.weatherPlace=param;
+      }
+      
     }
+
+   
   }
 
   departureAirports(param: string) {
@@ -154,6 +170,7 @@ export class FlyChoiceComponent {
         this.availableDepartures = [this.departure];
       } else {
         this.availableDepartures = [];
+        
       }
       for (let i = 0; i < this.allDepartureAirports; i++) {
         if (
@@ -199,6 +216,10 @@ export class FlyChoiceComponent {
         error: (err: any) => console.error(err),
       });
       this.choiceOfWeatherPlace();
+    }
+    
+    if (this.departure===''||this.weatherPlace!==this.departure){
+      this.weatherPlace=param;
     }
   }
 
@@ -251,7 +272,7 @@ export class FlyChoiceComponent {
         disableClose: false,
         hasBackdrop: true,
         backdropClass: '',
-        minWidth: '80%',
+        width: '90vw',
         height: '',
         position: {
           top: '',
@@ -269,4 +290,6 @@ export class FlyChoiceComponent {
     );
     this.weatherPlaceChoice.unshift('Weather forecast');
   }
+
+  
 }
