@@ -41,8 +41,10 @@
   }
 
   @media (orientation: landscape) {
-    margin-left: 10vmax;
-    width: 90vmax;
+    position: absolute;
+    top:7rem;
+    width:100%;
+    left:5%;
     grid-template-columns: 18.75% 5% 18.75% 5% 18.75% 5% 18.75%;
     grid-template-rows: 100%;
   }

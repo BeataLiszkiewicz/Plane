@@ -52,7 +52,7 @@
         pattern="^[A-Za-z0-9]\w+@[a-z0-9.-]+\.[a-z]+$"
         required
       />
-      <p *ngIf="email.errors?.pattern">Invalid characters</p>
+      <p *ngIf="email.errors?.pattern">Invalid email address</p>
     </form>
   </div>
   <button

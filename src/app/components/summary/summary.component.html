@@ -1,11 +1,15 @@
 <div class="container">
+
   <div class="flyDetails">
     <p class="fromTo">{{ summary.departure }} to {{ summary.arrival }}</p>
     <p class="departureDate">{{ summary.departDate | date : "dd.MM.yyyy" }}</p>
-    <p class="total">Total cost:{{ totalCost }} {{ summary.currency }}</p>
+    <p class="total">Total cost: {{ totalCost }} {{ summary.currency }}</p>
+   
+    
   </div>
+  <button (click)="cancelSeat()" appButtonClick class="cancelSeat">Cancel seat choice</button>
   <div class="tickets" #tickets>
-    <button (click)="cancelSeat()">Cancel seat choice</button>
+    
     <div
       class="passenger"
       *ngFor="let person of summary.passenger; let i = index"
@@ -36,7 +40,7 @@
             [disabled]="person.seat !== ''"
           />
         </ng-container>
-        <label for="luggage"></label>
+        <label for="luggage">Luggage: </label>
         <select
           name="luggage"
           #luggage
@@ -59,16 +63,15 @@
   </div>
 
   <div class="plane" #plane>
-    <h4 *ngIf="!waiting">
-      To chose a seat, click at first passenger seat field
-    </h4>
-    <div class="seats" *ngIf="distance === 'short'; else biggerPlane">
+    
+    <div class="seats" *ngIf="distance === 'short'; else biggerPlane" >
       <ng-container *ngFor="let _ of [].constructor(20); let i = index">
         <button
           class="columnA button"
           (click)="unsubscribe()"
           value="{{ i + 1 }}A"
           name="clear"
+          [hidden]="!waiting"
         >
           {{ i + 1 }}A
         </button>
@@ -77,6 +80,7 @@
           (click)="unsubscribe()"
           value="{{ i + 1 }}B"
           name="clear"
+          [hidden]="!waiting"
         >
           {{ i + 1 }}B
         </button>
@@ -85,6 +89,7 @@
           (click)="unsubscribe()"
           value="{{ i + 1 }}C"
           name="clear"
+          [hidden]="!waiting"
         >
           {{ i + 1 }}C
         </button>
@@ -93,6 +98,7 @@
           (click)="unsubscribe()"
           value="{{ i + 1 }}D"
           name="clear"
+          [hidden]="!waiting"
         >
           {{ i + 1 }}D
         </button>
@@ -106,6 +112,7 @@
             (click)="unsubscribe()"
             value="{{ i + 1 }}A"
             name="clear"
+            [hidden]="!waiting"
           >
             {{ i + 1 }}A
           </button>
@@ -114,6 +121,7 @@
             (click)="unsubscribe()"
             value="{{ i + 1 }}B"
             name="clear"
+            [hidden]="!waiting"
           >
             {{ i + 1 }}B
           </button>
@@ -122,6 +130,7 @@
             (click)="unsubscribe()"
             value="{{ i + 1 }}C"
             name="clear"
+            [hidden]="!waiting"
           >
             {{ i + 1 }}C
           </button>
@@ -130,6 +139,7 @@
             (click)="unsubscribe()"
             value="{{ i + 1 }}D"
             name="clear"
+            [hidden]="!waiting"
           >
             {{ i + 1 }}D
           </button>
@@ -139,6 +149,7 @@
             value="{{ i + 1 }}E"
             name="clear"
             *ngIf="distance === 'long'"
+            [hidden]="!waiting"
           >
             {{ i + 1 }}E
           </button>
@@ -148,6 +159,7 @@
             value="{{ i + 1 }}F"
             name="clear"
             *ngIf="distance === 'long'"
+            [hidden]="!waiting"
           >
             {{ i + 1 }}F
           </button>

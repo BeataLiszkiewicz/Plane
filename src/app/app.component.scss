@@ -12,6 +12,10 @@
     @media (orientation: landscape) {
       height: 3rem;
     }
+
+    @media (orientation:landscape){
+      grid-template-columns: 13% 1fr 20%;
+    }
    
 
     img {

@@ -7,7 +7,10 @@
   position: absolute;
   top:6rem;
 
-
+@media (orientation:landscape){
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
   .weather {
     position: absolute;
@@ -23,6 +26,11 @@
     font-size: 1.3rem;
     color: #00adfb;
     font-weight: bold;
+
+    @media (orientation:landscape){
+      width:60%;
+      margin-left: 20%;
+    }
 
     p {
       font-size: 0.9rem;
@@ -52,7 +60,6 @@
         min-height: 25px;
         font-size: 1.3rem;
         color: #00adfb;
-        background-color: white;
         font-weight: bold;
         margin-bottom: 0.5rem;
 
@@ -62,6 +69,7 @@
           color: #00adfb;
           font-weight: bold;
           font-family: Tahoma, sans-serif;
+          
         }
       }
     }
@@ -99,7 +107,8 @@
           height: 80%;
 
           @media (orientation: landscape) {
-            height: 60%;
+            height: 50%;
+            width: 50%;
           }
         }
       }
@@ -180,7 +189,14 @@
           border-left: 3px solid white;
           border-right: 3px solid white;
           border-radius: 0 0 10px 10px;
+
+          option{
+            overflow: scroll;
+          }
+          
         }
+
+        
       }
       .submit {
         margin-left: 1%;

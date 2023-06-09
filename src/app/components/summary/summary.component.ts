@@ -21,11 +21,12 @@ import { CalendarData } from 'src/app/interfaces/calendar-data';
 export class SummaryComponent {
   arrival: string = '';
   disabled: Array<string> = [];
+  distance: string = '';
   extraLuggage: number = 0;
   extraPlusLuggage: number = 0;
   departure: string = '';
+  firstUser: any = { name: '', surname: '' };
   flyDistanceInfo: any = '';
-  distance: string = '';
   flyDetails: CalendarData[]=[];
   getSeat: boolean = true;
   id: string = '0';
@@ -50,8 +51,9 @@ export class SummaryComponent {
 
   @ViewChildren('button') buttons!: QueryList<any>;
 
-  firstUser: any = { name: '', surname: '' };
+  
   ngOnInit() {
+    console.log('from init', this.waiting)
     this.summary = {
       departDate: '',
       departure: '',
@@ -119,7 +121,7 @@ export class SummaryComponent {
     if (this.UserService.oneUser.length !== 0) {
       this.firstUser.name = this.UserService.oneUser[0].name;
       this.firstUser.surname = this.UserService.oneUser[0].surname;
-    } else if (this.UserService.temporaryUser.name !== '') {
+    } else if (this.UserService.temporaryUser.name !== ''||this.UserService.temporaryUser.name !==undefined) {
       this.firstUser.name = this.UserService.temporaryUser.name;
       this.firstUser.surname = this.UserService.temporaryUser.surname;
     }
@@ -164,9 +166,11 @@ export class SummaryComponent {
   openPlane(param: any) {
     if (param[1] !== '') {
       this.getSeat = true;
+      
     }
   }
   seat(param: any) {
+    this.waiting=true;
     this.plane.nativeElement.scrollIntoView();
     this.id = param;
     if (this.getSeat) {
@@ -191,9 +195,11 @@ export class SummaryComponent {
         error: (err) => console.log('Wystąpił błąd', err),
       });
     }
+    console.log('from seat choice', this.waiting)
   }
   unsubscribe() {
     this.tickets.nativeElement.scrollIntoView();
+    this.waiting=false;
     if (!this.getSeat) {
       setTimeout(() => {
         {
@@ -208,6 +214,7 @@ export class SummaryComponent {
         }
       }, 10);
     }
+    console.log('unsubscribe', this.waiting)
   }
 
   calculateFinalCost() {
