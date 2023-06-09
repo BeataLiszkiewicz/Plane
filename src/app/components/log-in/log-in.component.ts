@@ -60,9 +60,9 @@ export class LogInComponent {
       hasBackdrop: true,
       backdropClass: '',
       minWidth: '100%',
-      height: '100%',
+      height: '90%',
       position: {
-        top: '',
+        top: '5%',
         bottom: '',
         left: '',
         right: '',

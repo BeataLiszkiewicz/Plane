@@ -66,14 +66,6 @@
       }
     }
 
-    @media (orientation: landscape) {
-      top: 75%;
-      left: 20vmin;
-      width: 80vmin;
-      z-index: 99;
-      font-size: 1.1rem;
-    }
-
     .weatherForecast {
       display: flex;
       gap: 0.5rem;
@@ -129,7 +121,7 @@
       background-position: left;
       background-repeat: no-repeat;
       background-size: cover;
-      height: 80vmin;
+      min-height: 80vmin;
 
       @media (min-height: 720px) {
         height: 80%;

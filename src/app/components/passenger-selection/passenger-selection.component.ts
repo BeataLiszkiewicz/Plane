@@ -15,12 +15,27 @@ export class PassengerSelectionComponent {
   adults: number = 1;
   child: number = 0;
   infants: number = 0;
-  passengers: number = 0;
+  passengers: any;
 
   constructor(
     public dialogRef: MatDialogRef<PassengerSelectionComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private readonly flyChoiceService:FlyChoiceDataService
   ) {}
+
+  ngOnInit(){
+    this.flyChoiceService.getPassengers().subscribe({
+      next: (el: any) => {
+        this.passengers = el;
+      },
+      error: (err: any) => console.log(err),
+  })
+  if(this.passengers.adults>0||this.passengers.children>0){
+    this.adults=this.passengers.adults
+    this.child=this.passengers.children
+    this.infants=this.passengers.infants
+  }
+}
 
   changeAdult(param: number) {
     this.adults += param;
@@ -47,4 +62,6 @@ export class PassengerSelectionComponent {
       infants: this.infants,
     });
   }
+
+  
 }

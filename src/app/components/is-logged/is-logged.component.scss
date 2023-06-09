@@ -1,0 +1,20 @@
+.container {
+  height: 90%;
+  width: 90%;
+  margin: 5%;
+  box-shadow: 1px 1px 3px #00adfb;
+  border-radius: 5%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-align: center;
+
+  h1, p{
+    margin:0;
+    padding: 0;
+  }
+  
+}

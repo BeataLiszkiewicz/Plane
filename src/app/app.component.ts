@@ -13,6 +13,7 @@ import { IsLoggedComponent } from './components/is-logged/is-logged.component';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  loggedIn:boolean=false;
   title = 'TicketsApp';
   today:Date=new Date();
   visible: string = '';
@@ -36,6 +37,7 @@ export class AppComponent {
     setInterval(()=>{this.today=new Date()}, 1000)
 
 
+
   }
 
   openLogIn() {
@@ -45,7 +47,7 @@ export class AppComponent {
         hasBackdrop: true,
         backdropClass: '',
         width: '90%',
-        height: '',
+        height: '50%',
         position: {
           top: '',
           bottom: '',
@@ -53,6 +55,7 @@ export class AppComponent {
           right: '',
         },
       });
+     
     } else {
       this.UserService.changeOnlyLogIn(true);
       this.dialogRef.open(LogInComponent, {

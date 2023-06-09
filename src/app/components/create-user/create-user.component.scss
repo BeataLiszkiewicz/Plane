@@ -1,6 +1,71 @@
-.red{
-    color: red;
+.red {
+  color: red;
 }
-.green{
-    color:green
+.green {
+  color: green;
+}
+input.ng-dirty.ng-invalid {
+  background-color: rgba(255, 0, 0, 0.363);
+  height: 1rem;
+}
+
+input.ng-dirty.ng-valid {
+  background-color: rgba(0, 128, 0, 0.402);
+}
+
+.container {
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+  box-shadow: 1px 1px 3px #00adfb;
+  border-radius: 5%;
+  overflow: scroll;
+
+  .header {
+    display: grid;
+    grid-template-columns: 80% 20%;
+
+    button {
+      background-color: #2f43bb;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 5%;
+      height: 50%;
+      width: 50%;
+      margin-left: 50%;
+    }
+  }
+
+  .createUser {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 25% 75%;
+
+    label {
+      grid-column: 1;
+      font-weight: bold;
+    }
+
+    input {
+      grid-column: 2;
+      margin: 0;
+      padding: 0;
+      min-height: 1rem;
+    }
+
+    p {
+      grid-column: 1 / span 2;
+      margin: 0 0 0.5rem 0;
+      padding: 0;
+    }
+
+    .button {
+      grid-column: 1 / span 2;
+      height: 4rem;
+      border-radius: 5%;
+      width: 90%;
+      margin-left: 5%;
+    }
+  }
 }
