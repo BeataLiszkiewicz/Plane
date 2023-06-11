@@ -11,14 +11,25 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    row-gap: 0.5rem;;
     box-shadow: 1px 1px 3px #00adfb;
     border-radius: 5%;
-
+   
+    form{
+      width: 90%;
+      margin-left: 5%;
+      input{
+        font-size:1.2 rem;
+      }
+  
+     
+    }
     p{
       grid-column: 1 /span 2;
       color: red;
       text-align: center;
     }
+    
   }
 
   .signIn {
@@ -34,6 +45,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    row-gap: 0.5rem;;
     box-shadow: 1px 1px 3px #00adfb;
     border-radius: 5%;
 
@@ -62,5 +74,12 @@
     margin-top: 0.5rem;
     width:80%;
     height: 2rem;
+
+    @media (orientation:landscape){
+      font-size: 1.3rem;
+    }
+  }
+  .empty{
+    color:red
   }
 }

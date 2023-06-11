@@ -20,6 +20,13 @@
       appOpacity
     ></div>
   </div>
+  <div class="shadowContainer">
+    <div class="planeShadow">
+      <div class="mid main" (click)="flyFly()" [@justFly]="flyStart">
+        <p *ngIf="flyStart === ''">FLY WITH US</p>
+      </div>
+    </div>
+  </div>
   <div *ngIf="disappear === ''" class="ld main">
     <h2>Experienced aircrew</h2>
     <div
@@ -42,11 +49,5 @@
       appOpacity
     ></div>
   </div>
-  <div class="shadowContainer">
-    <div class="planeShadow">
-      <div class="mid main" (click)="flyFly()" [@justFly]="flyStart">
-        <p *ngIf="flyStart === ''">FLY WITH US</p>
-      </div>
-    </div>
-  </div>
+  
 </div>

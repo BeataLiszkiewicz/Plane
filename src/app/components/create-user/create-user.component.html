@@ -15,7 +15,7 @@
       name="login"
       minlength="5"
       pattern="\w+"
-    /><br />
+    />
     <p *ngIf="login.errors?.appUserExist" class="red">
       User name already exist. Please chose other.
     </p>
@@ -53,7 +53,7 @@
       maxlength="6"
       required
       appPasswordLetters
-    /><br />
+    />
     <p *ngIf="password.errors?.required && password.touched" class="red">
       This field is mandatory
     </p>
@@ -83,7 +83,7 @@
       required
       pattern="[A-Za-z]+"
       name="name"
-    /><br />
+    />
     <p *ngIf="name.errors?.required && name.touched" class="red">
       This field is mandatory
     </p>
@@ -98,7 +98,7 @@
       name="surname"
       required
       pattern="[A-Za-z]+"
-    /><br />
+    />
     <p *ngIf="surname.errors?.required && surname.touched" class="red">
       This field is mandatory
     </p>
@@ -113,11 +113,12 @@
       name="email"
       required
       pattern="^[A-Za-z0-9]\w+@[a-z0-9.-]+\.[a-z]+$"
-    /><br />
+    />
     <p *ngIf="email.errors?.required && email.touched" class="red">
       This field is mandatory
     </p>
     <p *ngIf="email.errors?.pattern" class="red">Invalid email address</p>
+    
     <button
       type="submit"
       [disabled]="!createUser.valid"

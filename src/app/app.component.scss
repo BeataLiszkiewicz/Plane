@@ -3,6 +3,8 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  display: grid;
+  
 
   .bar {
     display: grid;
@@ -13,10 +15,9 @@
       height: 3rem;
     }
 
-    @media (orientation:landscape){
+    @media (orientation: landscape) {
       grid-template-columns: 13% 1fr 20%;
     }
-   
 
     img {
       height: 5rem;
@@ -28,8 +29,8 @@
 
     .login {
       position: relative;
-
-      
+      display: flex;
+      justify-content: center;
 
       .logoIcon {
         clip-path: path(
@@ -39,24 +40,34 @@
         height: 100%;
         width: 100%;
         position: absolute;
-        top:1rem;
-        left:0;
+        top: 1rem;
+        left: 0;
 
-        @media(min-width:768px){
-          top:2rem;
-          left:2rem;
-          transform: scale(2,2);
+        @media (min-width: 768px) {
+          top: 2rem;
+          left: 2rem;
+          transform: scale(2, 2);
           height: 50%;
-          
+
+          @media (orientation: landscape) {
+            transform:translate(70%) scale(2,2)
+
+          }
         }
-        
+
+        @media (max-height:576px) and (orientation:landscape){
+          transform: scale(1,1);
+        }
+       
       }
     }
 
-    .time{
-      color:#00adfb;
+    .time {
+      color: #00adfb;
       font-weight: bold;
       text-align: 20%;
     }
   }
+
+  
 }

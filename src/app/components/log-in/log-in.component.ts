@@ -59,12 +59,13 @@ export class LogInComponent {
       disableClose: false,
       hasBackdrop: true,
       backdropClass: '',
-      minWidth: '100%',
+      width:'80%',
+      maxWidth:'500px',
       height: '90%',
       position: {
         top: '5%',
         bottom: '',
-        left: '',
+        left: '10%',
         right: '',
       },
     });

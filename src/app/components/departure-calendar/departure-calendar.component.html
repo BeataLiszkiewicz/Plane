@@ -56,10 +56,13 @@
       <div 
         *ngFor="let day of calendar[calendarMonth].days"
         (click)="choseDate(day)"
+        class="eachDay"
       >
         <span >{{ day[0] }}</span
-        ><br />
-        {{ day[1] | calendarCurrency : currencyRate[0] }}<br />
+        >
+        
+        <p class="price">{{ day[1] | calendarCurrency : currencyRate[0] }}</p>
+        
         <span *ngIf="day[1] > 0" >{{ currencyRate[1] }}</span>
       </div>
     </div>

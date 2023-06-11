@@ -7,6 +7,7 @@
 
   @media (orientation: landscape) {
     max-width: 80vmin;
+    font-size: 1.3rem;
   }
 
   .header {
@@ -49,12 +50,14 @@
     .monthHead {
       display: grid;
       grid-template-columns: 10% 10% 30% 10% 40%;
+      grid-template-rows: 100%;
       background-color: #2f43bb;
       color: white;
       height: 2.5rem;
 
       button {
         all: unset;
+        cursor: pointer;
       }
       .valid {
         color: white;
@@ -89,13 +92,27 @@
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       row-gap: 0.5rem;
+      cursor: pointer;
+
       
-        cursor: pointer;
-      
+      .eachDay{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        @media (orientation: landscape) {
+          font-size: 1.1rem;
+        }
+
+        .price{
+          margin:0;
+        }
+      }
 
       :nth-child(7n) {
         background-color: #e6eaed;
       }
+
 
       div {
         aspect-ratio: 1;
@@ -103,12 +120,16 @@
         border: 1px solid #00adfb;
         font-size: 15px;
         text-align: center;
+        
 
         
 
         span {
           font-size: 12px;
           color: gray;
+          @media (orientation: landscape) {
+            font-size: 16px;
+          }
         }
       }
     }

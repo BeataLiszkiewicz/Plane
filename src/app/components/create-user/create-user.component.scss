@@ -19,7 +19,15 @@ input.ng-dirty.ng-valid {
   margin: 5%;
   box-shadow: 1px 1px 3px #00adfb;
   border-radius: 5%;
-  overflow: scroll;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  line-height: 1.5;
+ 
+  @media (min-height:992px) {
+   overflow:hidden; 
+  }
+
+  
 
   .header {
     display: grid;
@@ -38,18 +46,19 @@ input.ng-dirty.ng-valid {
   }
 
   .createUser {
-    margin-top: 1rem;
+    margin:0;
     display: grid;
     grid-template-columns: 25% 75%;
 
     label {
       grid-column: 1;
       font-weight: bold;
+      margin: 0.5rem 0 0 0;
     }
 
     input {
       grid-column: 2;
-      margin: 0;
+      margin: 0.5rem 0 0 0;
       padding: 0;
       min-height: 1rem;
     }
@@ -65,7 +74,11 @@ input.ng-dirty.ng-valid {
       height: 4rem;
       border-radius: 5%;
       width: 90%;
-      margin-left: 5%;
+      margin: 1rem 0 0 5%;
+
+      @media (orientation:landscape){
+        font-size: 1.3rem;
+      }
     }
   }
 }

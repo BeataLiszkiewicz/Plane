@@ -25,7 +25,7 @@
         ngModel
         #name="ngModel"
         minLength="1"
-        pattern="[A-Za-z]+"
+        pattern="[A-Za-z-]+"
         required
         name="name"
       />
@@ -63,7 +63,7 @@
   >
     Continue
   </button>
-  <p *ngIf="incorrectdata">
+  <p *ngIf="incorrectdata" .class="empty">
     Form contains incorrect information or some information is missing
   </p>
 </div>

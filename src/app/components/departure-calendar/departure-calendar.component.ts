@@ -146,6 +146,8 @@ export class DepartureCalendarComponent {
       this.currencyRate[0] = 1;
       this.currencyRate[1] = 'PLN';
     }
+
+   
   }
 
   load() {

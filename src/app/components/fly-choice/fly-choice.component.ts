@@ -244,7 +244,7 @@ export class FlyChoiceComponent {
       disableClose: false,
       hasBackdrop: true,
       backdropClass: '',
-      minWidth: '80%',
+      minWidth: '350px',
       height: '',
       position: {
         top: '',
@@ -272,7 +272,8 @@ export class FlyChoiceComponent {
         disableClose: false,
         hasBackdrop: true,
         backdropClass: '',
-        width: '90vw',
+        width: '90vmin',
+        maxWidth:'400px',
         height: '',
         position: {
           top: '',
