@@ -5,7 +5,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  overflow-wrap: normal;
+  overflow: scroll;
 
   .form {
     font-size: 1.5rem;
@@ -48,6 +48,10 @@
         }
       }
     }
+    .warning {
+      margin-left: 1px;
+      color: #c86208;
+    }
 
     .submit {
       width: 90%;
@@ -60,8 +64,5 @@
 
     }
   }
-  .warning {
-    margin-left: 1px;
-    color: #c86208;
-  }
+  
 }

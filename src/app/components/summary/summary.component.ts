@@ -53,7 +53,7 @@ export class SummaryComponent {
 
   
   ngOnInit() {
-    console.log('from init', this.waiting)
+    
     this.summary = {
       departDate: '',
       departure: '',
@@ -195,7 +195,7 @@ export class SummaryComponent {
         error: (err) => console.log('Wystąpił błąd', err),
       });
     }
-    console.log('from seat choice', this.waiting)
+    
   }
   unsubscribe() {
     this.tickets.nativeElement.scrollIntoView();
@@ -214,7 +214,7 @@ export class SummaryComponent {
         }
       }, 10);
     }
-    console.log('unsubscribe', this.waiting)
+    
   }
 
   calculateFinalCost() {

@@ -68,6 +68,18 @@
           </button>
         </div>
       </div>
+      <p class="warning" *ngIf="adults === 0">
+        Passengers under 16 can not fly without adult companion
+      </p>
+      <p class="warning" *ngIf="adults + child > 8">
+        To buy more than 9 seat tickets, please contact our hotline to check current
+        discounts and conditions.
+      </p>
+      <p class="warning" *ngIf="adults + child === infants && adults + child < 9">
+        All infants needs to fly with someone older. If you want to buy separate
+        seat for infant, please add another child passenger and inform our crew at
+        the gate.
+      </p>
       <button
         type="submit"
         [disabled]="adults === 0"
@@ -81,16 +93,5 @@
     </form>
   </div>
 
-  <p class="warning" *ngIf="adults === 0">
-    Passengers under 16 can not fly without adult companion
-  </p>
-  <p class="warning" *ngIf="adults + child > 8">
-    To buy more than 9 seat tickets, please contact our hotline to check current
-    discounts and conditions.
-  </p>
-  <p class="warning" *ngIf="adults + child === infants && adults + child < 9">
-    All infants needs to fly with someone older. If you want to buy separate
-    seat for infant, please add another child passenger and inform our crew at
-    the gate.
-  </p>
+  
 </div>

@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  
+  overflow: scroll;
   position: absolute;
   top: 5rem;
   left: 0;
@@ -15,6 +15,14 @@
     grid-template-rows: 5rem 2% 30% 800px;
     grid-template-columns: repeat(6,1fr);
     background-size: cover;
+    
+    
+
+    @media (max-width:576px){
+      grid-template-rows: 5rem 2% 30% 400px 400px;
+      grid-template-columns: repeat(6,1fr);
+      background-size: cover;
+    }
     
   }
   
@@ -122,10 +130,9 @@
   .plane {
     grid-row: 5;
     width: 100%;
-    height: 90vh;
     background-color: black;
     transform: scaleY(2);
-    border-radius: 40% 40% 0 0;
+    border-radius: 30% 30% 0 0;
     display: flex;
     margin: 1rem 0;
     padding: 0;
@@ -136,8 +143,14 @@
       max-width:400px;
       max-height: 80vmin;
       margin-top: 40vmin;
-      grid-row: 3;
+      grid-row: 3/span 2;
       grid-column: 5/span 2;
+      
+
+      @media (max-width:576px){
+        grid-row: 4/span 2;
+        grid-column: 4/span 3;
+      }
       
     }
 
@@ -150,17 +163,21 @@
       text-align: center;
     }
     .seats {
-      height: 65%;
+     max-height: 75%;
       width: 100%;
+      
       display: grid;
-      grid-template-columns: 10% repeat(2, 1fr) 15% repeat(2, 1fr) 10%;
+      grid-template-columns:  repeat(3, 1fr) 15% repeat(3, 1fr);
       border: none;
       position: absolute;
-      top: 25%;
+      top: 10%;
 
-      @media (orientation:landscape){
-        height: 50%;
-      }
+  @media (orientation:landscape){
+    
+   
+    @media (max-height:576px){
+    grid-template-columns:  repeat(7, 1fr);
+  }}
 
       button {
         background-color: orange;
@@ -198,6 +215,11 @@
       position: absolute;
       top: 15%;
 
+      @media (orientation:landscape)and (max-width:576px){
+        grid-template-columns:  repeat(7, 1fr);
+        
+      }
+
       button {
         background-color: orange;
         text-align: left;
@@ -211,25 +233,31 @@
       }
       .columnA {
         grid-column: 2;
+        @media (orientation:landscape)and (max-width:576px){grid-column: 1;}
       }
       .columnB {
         grid-column: 3;
         margin-left: 0.5rem;
+        @media (orientation:landscape)and (max-width:576px){grid-column: 2;}
       }
       .columnC {
         grid-column: 4;
         margin-left: 0.5rem;
+        @media (orientation:landscape)and (max-width:576px){grid-column: 3;}
       }
       .columnD {
         grid-column: 6;
+        @media (orientation:landscape)and (max-width:576px){grid-column: 5;}
       }
       .columnE {
         grid-column: 7;
         margin-left: 0.5rem;
+        @media (orientation:landscape)and (max-width:576px){grid-column: 6;}
       }
       .columnF {
         grid-column: 8;
         margin-left: 0.5rem;
+        @media (orientation:landscape)and (max-width:576px){grid-column: 7;}
       }
     }
   }

@@ -226,9 +226,11 @@ export class FlyChoiceComponent {
   openCalendar() {
     this.dialogRef.open(DepartureCalendarComponent, {
       disableClose: false,
+      autoFocus: false,
       hasBackdrop: true,
       backdropClass: '',
       minWidth: '375px',
+      maxHeight:'100vmin',
       height: '',
       position: {
         top: '',
@@ -242,9 +244,11 @@ export class FlyChoiceComponent {
   openPassengerChoice() {
     const passengersInfo = this.dialogRef.open(PassengerSelectionComponent, {
       disableClose: false,
+      autoFocus: false,
       hasBackdrop: true,
       backdropClass: '',
       minWidth: '350px',
+      maxHeight:'100vmin',
       height: '',
       position: {
         top: '',
@@ -270,10 +274,12 @@ export class FlyChoiceComponent {
     } else {
       const logIn = this.dialogRef.open(LogInComponent, {
         disableClose: false,
+        autoFocus: false,
         hasBackdrop: true,
         backdropClass: '',
         width: '90vmin',
         maxWidth:'400px',
+        maxHeight:'100vmin',
         height: '',
         position: {
           top: '',
