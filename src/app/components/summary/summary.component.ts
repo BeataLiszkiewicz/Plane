@@ -225,6 +225,7 @@ export class SummaryComponent {
   }
 
   cancelSeat() {
+    alert('Click on a seat which you do not need any longer');
     this.waiting = true;
     this.getSeat = false;
     this.plane.nativeElement.scrollIntoView();
