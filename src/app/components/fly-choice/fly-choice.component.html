@@ -22,9 +22,10 @@
       <ng-container *ngIf="weatherPlace === departure.value; else arrivalPlace">
         <ng-container *ngFor="let day of dailyWeatherForecast">
           <div class="weatherDay">
-            <p class="date">{{ day.date | date : "dd.MM" }}</p>
+
             <img
-              src="{{ 'assets/pictures/' + day.weather + '.png' }}"
+              src="{{ './../../../assets/pictures/' + day.weather + '.png' }}"
+              
               alt="{{ day.weather }}"
             />
             <p class="temperature">{{ day.temp }}<span>&#8451;</span></p>
