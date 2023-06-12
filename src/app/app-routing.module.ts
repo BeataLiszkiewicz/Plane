@@ -18,7 +18,6 @@ const routes:Routes=[
   {path:'summary', component:SummaryComponent},
   {path:'createUser', component:CreateUserComponent},
   {path:'isLogged', component:IsLoggedComponent},
-  {path:'**', component:FlyChoiceComponent}
 ]
 
 @NgModule({
