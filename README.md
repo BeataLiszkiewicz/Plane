@@ -2,25 +2,23 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
 
-## Development server
+## Description
+This project is a simulation of plane tickets reservation proces. User may chose departure and arrival airport, departure date with suitable price, number of passengers divided by 3 price groups, luggage with or without extra cost, seat in a plane. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Project also includes few Template Driven Forms with build in as well as customed validators, weather forecast based on OpenWeatherMap API and currency change possibility based on NBP Api. 
 
-## Code scaffolding
+## User guide
+To use the aplication you can either:
+    Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Or:
+    Open Github Pages for the project. Yet, not all options are properly visible on Github Pages. This will be solved in updated version of the App.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Application works with all popular browsers, however using Chrome is recomended. 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build` to build the project. The build artifacts will be stored in the `docs/` directory.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Further help
 
